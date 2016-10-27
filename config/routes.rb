@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new", as: :login
   get "/signup", to: "users#new", as: :signup
+  delete "/logout", to: "sessions#destroy"
 
 
 end

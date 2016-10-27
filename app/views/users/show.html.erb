@@ -1,1 +1,4 @@
-HI
+Username: <%= @user.username %><br>
+<% if current_user == @user %>
+  Current Balance: <%= @user.balance %>
+<% end %>
