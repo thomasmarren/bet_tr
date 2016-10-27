@@ -1,0 +1,38 @@
+<%= form_for @matchup do |f| %>
+  <% if flash.any? %>
+    <% flash.keys.each do |message| %>
+      <%= flash[message] %>
+    <% end %>
+  <% end %>
+
+<label>Competitor 1</label>
+<select name="competitor1">
+  <% @competitors.each do |competitor| %>
+  <option value= <%= competitor.id %> > <%= competitor.name %></option>
+  <% end %>
+</select><br>
+
+<label>Competitor 2</label>
+<select name="competitor2">
+  <% @competitors.each do |competitor| %>
+  <option value= <%= competitor.id %> > <%= competitor.name %></option>
+  <% end %>
+</select><br>
+
+<label>Matchup Type</label>
+<select name="matchup_type">
+  <% @types.each do |type| %>
+  <option value= <%= type.id %> > <%= type.name %></option>
+  <% end %>
+</select><br>
+
+<label>Enter Year: </label>
+<input type="text" name="year"><br>
+<label>Enter Month: </label>
+<input type="text" name="month"><br>
+<label>Enter Day: </label>
+<input type="text" name="day">
+
+<%= f.submit "Create A Matchup" %>
+
+<% end %>
