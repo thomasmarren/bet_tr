@@ -26,12 +26,7 @@
   <% end %>
 </select><br>
 
-<label>Enter Year: </label>
-<input type="text" name="year"><br>
-<label>Enter Month: </label>
-<input type="text" name="month"><br>
-<label>Enter Day: </label>
-<input type="text" name="day">
+<%= f.datetime_local_field :deadline %>
 
 <%= f.submit "Create A Matchup" %>
 

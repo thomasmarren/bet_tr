@@ -11,23 +11,31 @@ class MatchupsController < ApplicationController
   end
 
   def create
+    @competitor1 = Competitor.find(competitor1)
+    @competitor2 = Competitor.find(competitor2)
+    @matchup_type = MatchupType.find(matchup_type)
+
     if same_competitors? #|| !valid_date?
       redirect_to new_matchup_path
     else
-      #@matchup = Matchup.new
+      @matchup = Matchup.new(deadline: DateTime.new(2017, 5, 21), matchup_type_id: @matchup_type.id)
+      @matchup.name = "#{@competitor1.name} VS #{@competitor2.name}"
+      @matchup.competitors = [@competitor1, @competitor2]
+      @matchup.save
+      redirect_to @matchup
     end
     #@matchup = Matchup.new
 
   end
 
   def show
-    @competitor = Competitor.find(params[:id])
+    @matchup = Matchup.find(params[:id])
   end
 
   def destroy
-    @competitor = Competitor.find(params[:id])
-    @competitor.destroy
-    redirect_to competitors_path
+    @matchup = Matchup.find(params[:id])
+    @matchup.destroy
+    redirect_to matchups_path
   end
 
   private
@@ -38,6 +46,10 @@ class MatchupsController < ApplicationController
 
   def competitor2
     params[:competitor2]
+  end
+
+  def matchup_type
+    params[:matchup_type]
   end
 
   # def valid_date?

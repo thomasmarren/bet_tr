@@ -1,0 +1,11 @@
+<h1>  <%= @matchup.matchup_type.name %> </h1>
+<h2>featuring: </h2>
+<h3><%= @matchup.competitors.first.name %></h3>
+VS
+<h3> <%= @matchup.competitors.last.name %> </h3>
+ON
+
+<h3> <%= @matchup.deadline %> </h3>
+
+
+<%= link_to "See All Matchups", matchups_path %>
