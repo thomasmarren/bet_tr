@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :username, :password
   validates_uniqueness_of :username, message: "Username already exists"
 
+  def initialize
+
+  end
+
 end
