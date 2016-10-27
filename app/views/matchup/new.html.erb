@@ -1,0 +1,18 @@
+<%= form_for @matchup do |f| %>
+
+<%= label_for "Competitor 1" %>
+<%= f.select :competitor_1 do %>
+  <% @competitors.each do |competitor| %>
+    <%= competitor.name %>
+    <% end %>
+<% end %>
+
+<%= label_for "Competitor 2" %>
+<%= f.select :competitor_2 do %>
+  <% @competitors.each do |competitor| %>
+    <%= competitor.name %>
+    <% end %>
+<% end %>
+
+
+<% end %>

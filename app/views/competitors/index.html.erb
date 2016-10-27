@@ -1,0 +1,9 @@
+<h1>All Competitors</h1>
+
+<ul>
+<% @competitors.each do |competitor| %>
+  <li><%= link_to competitor.name, competitor %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Add New Competitor', new_competitor_path %>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :users, except: [:new]
   resources :sessions, except: [:new]
+  resources :competitors, except: [:edit, :update]
+  resources :matchups
 
   get "/login", to: "sessions#new", as: :login
   get "/signup", to: "users#new", as: :signup
