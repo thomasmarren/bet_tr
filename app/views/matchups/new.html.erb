@@ -26,7 +26,7 @@
   <% end %>
 </select><br>
 
-<%= f.datetime_local_field :deadline %>
+<%= f.datetime_local_field :deadline, min: Time.zone.today, max: Time.zone.today.next_month %>
 
 <%= f.submit "Create A Matchup" %>
 
