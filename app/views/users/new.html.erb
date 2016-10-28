@@ -1,5 +1,12 @@
 <h1>Sign up</h1>
-
+  <% if flash[:passwords] %>
+    <%= flash[:passwords] %>
+    <% end %>
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |message| %>
+    <%= message %>
+    <% end %>
+    <% end %>
 <%= form_for @user do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name %><br>

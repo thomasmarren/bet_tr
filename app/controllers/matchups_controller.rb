@@ -15,16 +15,16 @@ class MatchupsController < ApplicationController
     @competitor2 = Competitor.find(competitor2)
     @matchup_type = MatchupType.find(matchup_type)
 
-    if same_competitors? #|| !valid_date?
+    if same_competitors?
       redirect_to new_matchup_path
     else
-      @matchup = Matchup.new(deadline: DateTime.new(2017, 5, 21), matchup_type_id: @matchup_type.id)
+      @matchup = Matchup.new(deadline: deadline, matchup_type_id: @matchup_type.id)
       @matchup.name = "#{@competitor1.name} VS #{@competitor2.name}"
       @matchup.competitors = [@competitor1, @competitor2]
       @matchup.save
       redirect_to @matchup
     end
-    #@matchup = Matchup.new
+
 
   end
 
@@ -60,15 +60,9 @@ class MatchupsController < ApplicationController
     params[:matchup_type]
   end
 
-  # def valid_date?
-  #
-  #   if @deadline && @deadline > DateTime.now
-  #     return true
-  #   else
-  #     flash[:date] = "You've entered invalid date!"
-  #   end
-  #
-  # end
+  def deadline
+    params[:matchup][:deadline]
+  end
 
   def same_competitors?
     if competitor1 == competitor2

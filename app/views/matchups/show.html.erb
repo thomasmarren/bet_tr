@@ -29,9 +29,14 @@
 
   </div>
 
+
+<h3><%= @matchup.competitors.first.name %>
+vs
+ <%= @matchup.competitors.last.name %> </h3>
+
 ON
 
-<h3> <%= @matchup.deadline %> </h3>
-
-
+<h3> <%= @matchup.deadline.strftime("%A, %B %d, '%y") %>
+         at
+ <%= @matchup.deadline.strftime("%I:%M %p") %> </h3>
 <%= link_to "See All Matchups", matchups_path %>

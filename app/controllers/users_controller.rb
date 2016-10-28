@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    if params[:password] == params[:password_confirmation]
-      @user = User.new(user_params(:name, :username, :password))
+    @user = User.new(user_params(:name, :username, :password))
+    if params[:user][:password] == params[:user][:password_confirmation]
       if @user.save
         session[:user_id] = @user.id
         redirect_to @user
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         render :new
       end
     else
-      #passwords don't match
+      flash[:passwords] = "Passwords must match."
       render :new
     end
   end

@@ -6,8 +6,9 @@
 
       <% @matchups.each do |matchup| %>
 
-        <div class="col-xs-6 col-centered col-fixed matchup_blocks">
-          <h3><%= link_to matchup.name, matchup %></h3>
+        <a href="/matchups/<%= matchup.id %>">
+          <div class="col-xs-6 col-centered col-fixed matchup_blocks">
+            <h3> <%= matchup.name %></h3>
           <h4>Competitors</h4>
             <% matchup.competitors.each.with_index(1) do |comp, idx| %>
               <%= comp.name %>
@@ -16,8 +17,9 @@
           <h4>Type</h4>
           <%= matchup.matchup_type.name %><br>
           <h4>Matchup Date</h4>
-          <%= matchup.deadline %><br>
+          <%= matchup.deadline.ctime %><br>
         </div>
+      </a>
 
       <% end %>
 
