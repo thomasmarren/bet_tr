@@ -2,3 +2,12 @@ Username: <%= @user.username %><br>
 <% if current_user == @user %>
   Current Balance: <%= @user.balance %>
 <% end %>
+<br><br>
+
+<h2>Your Bets: </h2>
+<% @user.bets.each do |bet| %>
+  You bet <%= bet.amount %> <br>
+  on <%= link_to "#{bet.competitor.name}", competitor_path(bet.competitor) %> <br>
+  in <%= link_to "#{bet.matchup.name}", matchup_path(bet.matchup) %><br>
+  <br>&nbsp;<br>
+<% end %>
