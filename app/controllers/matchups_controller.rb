@@ -38,6 +38,14 @@ class MatchupsController < ApplicationController
     redirect_to matchups_path
   end
 
+  def create_random_matchup
+    @random_matchup = RandomMatchupGenerator.new
+    @random_matchup.randomize
+    @matchup = @random_matchup.instance_variable_get("@matchup")
+    @matchup.save
+    redirect_to @matchup
+  end
+
   private
 
   def competitor1

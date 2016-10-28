@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get "/signup", to: "users#new", as: :signup
   delete "/logout", to: "sessions#destroy"
 
+  post "/random", to: "matchups#create_random_matchup"
+
 
 end

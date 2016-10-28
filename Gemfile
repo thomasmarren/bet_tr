@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry'
 gem 'rb-readline'
 
+gem 'randumb'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
