@@ -15,13 +15,9 @@
 
     <div class="matchup_name">
 
-      <!-- <%= form_for @matchup.competitors.last do |f| %>
-
-        <%= f.submit "#{@matchup.competitors.last.name}", "/placebet", action: :placebet %>
-
-      <% end %> -->
-
+      <!-- We need matchup.id and competitor.id -->
       <%= form_tag "/placebet" do %>
+      <%=  %>
       <%= submit_tag "#{@matchup.competitors.last.name}" %>
       <% end %>
 
