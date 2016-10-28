@@ -18,7 +18,7 @@ class MatchupsController < ApplicationController
     if same_competitors? #|| !valid_date?
       redirect_to new_matchup_path
     else
-      @matchup = Matchup.new(deadline: DateTime.new(2017, 5, 21), matchup_type_id: @matchup_type.id)
+      @matchup = Matchup.new(deadline: params[:deadline], matchup_type_id: @matchup_type.id)
       @matchup.name = "#{@competitor1.name} VS #{@competitor2.name}"
       @matchup.competitors = [@competitor1, @competitor2]
       @matchup.save
