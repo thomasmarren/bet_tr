@@ -1,3 +1,28 @@
-<% @matchups.each do |matchup| %>
-<li><%= link_to matchup.name, matchup %> IN <%= matchup.matchup_type.name %> ON <%= matchup.deadline %></li>
-<% end %>
+<h3 id="create_matchup"><%= link_to "Create a Matchup", new_matchup_path %></h3>
+
+<div class="matchups_container">
+
+    <div class="row row-centered">
+
+      <% @matchups.each do |matchup| %>
+
+        <div class="col-xs-6 col-centered col-fixed matchup_blocks">
+          <h3><%= link_to matchup.name, matchup %></h3>
+          <h4>Competitors</h4>
+            <% matchup.competitors.each.with_index(1) do |comp, idx| %>
+              <%= comp.name %>
+              <%= "vs." unless idx == matchup.competitors.length %>
+            <% end %><br>
+          <h4>Type</h4>
+          <%= matchup.matchup_type.name %><br>
+          <h4>Matchup Date</h4>
+          <%= matchup.deadline %><br>
+        </div>
+
+      <% end %>
+
+    </div>
+
+</div>
+
+<!-- 1. Make the whole box clickable or just the link? -->
