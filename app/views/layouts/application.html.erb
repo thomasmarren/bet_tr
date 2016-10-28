@@ -4,17 +4,88 @@
     <title>BetTr</title>
     <%= csrf_meta_tags %>
 
+    <!-- BOOTSTRAP -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/master.css" media="screen" title="no title">
+    <!-- END BOOTSTRAP -->
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <!-- END FONT AWESOME -->
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
   <body>
-    <% if logged_in? %>
-      Hello <%= current_user.username %>
-      <%= button_to "Log Out", logout_path, method: :delete %> <br>
-    <% else %>
-      <%= link_to "Sign Up", signup_path %>
-    <% end %>
+
+    <!-- NAVIGATION BAR -->
+
+    <nav>
+
+      <div class="logo">
+        <h1>Bet.tr</h1>
+        <h5>Clever tag line</h5>
+      </div>
+
+      <% if logged_in? %>
+
+      <div class="nav_profile">
+
+        <div class="btn-group">
+          <a class="btn btn-primary" href="/users/<%= current_user.id %>"><i class="fa fa-user fa-fw"></i><%= current_user.username %></a>
+          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="fa fa-caret-down" title="Toggle dropdown menu"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+            <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="fa fa-unlock"></i> Make admin</a></li>
+            <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+          </ul>
+        </div>
+          <h3><i class="fa fa-usd" aria-hidden="true"></i><%= current_user.balance %></h3>
+
+        <% else %>
+
+          <div class="signup">
+            <h3><%= link_to "Sign Up", signup_path %></h3>
+          </div>
+
+      </div>
+
+      <% end %>
+
+  </nav>
+
+  <!-- END NAVIGATION BAR -->
+
+    <div class="wrapper">
     <%= yield %>
+    </div>
   </body>
+
+  <!-- SCRIPTS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <!-- SCRIPTS -->
+
+  <!-- JQUERY FOR PROFILE DROPDOWN -->
+  <script>
+  $(document).ready(function(){
+    $(".dropdown-toggle").click(function(){
+        $("div.btn-group").toggleClass("open");
+        return false
+    });
+    $('html').click(function() {
+            $('div.btn-group').removeClass('open');
+        });
+      });
+  </script>
+  <!-- END JQUERY -->
+
 </html>
