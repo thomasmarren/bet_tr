@@ -1,36 +1,32 @@
+<h1>  <%= @matchup.name %> </h1>
+
 <h1>  <%= @matchup.matchup_type.name %> </h1>
+
 <h2>featuring: </h2>
 
 
   <div class="row matchup_names">
 
     <div class="matchup_name">
-      <h4><%= @matchup.competitors.first.name %></h4>
+      <%= form_tag "/placebet" do %>
+      <%= hidden_field_tag 'matchup', @matchup.id  %>
+      <%= hidden_field_tag 'competitor', @matchup.competitors.first.id  %>
+      <%= submit_tag "#{@matchup.competitors.first.name}" %>
+      <% end %>
     </div>
-
-    <div class="matchup_name">
-      VS
-    </div>
-
 
     <div class="matchup_name">
 
       <!-- We need matchup.id and competitor.id -->
       <%= form_tag "/placebet" do %>
-      <%=  %>
+      <%= hidden_field_tag 'matchup', @matchup.id  %>
+      <%= hidden_field_tag 'competitor', @matchup.competitors.last.id  %>
       <%= submit_tag "#{@matchup.competitors.last.name}" %>
       <% end %>
 
     </div>
 
   </div>
-
-
-<h3><%= @matchup.competitors.first.name %>
-vs
- <%= @matchup.competitors.last.name %> </h3>
-
-ON
 
 <h3> <%= @matchup.deadline.strftime("%A, %B %d, '%y") %>
          at
