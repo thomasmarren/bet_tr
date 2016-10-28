@@ -1,13 +1,15 @@
 class MatchupsController < ApplicationController
 
+  before_action :require_login, except: [:index, :show]
+
+  def index
+    @matchups = Matchup.all
+  end
+
   def new
     @competitors = Competitor.all
     @types = MatchupType.all
     @matchup = Matchup.new
-  end
-
-  def index
-    @matchups = Matchup.all
   end
 
   def create

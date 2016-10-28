@@ -1,11 +1,13 @@
 class CompetitorsController < ApplicationController
 
-  def new
-    @competitor = Competitor.new
-  end
+  before_action :require_login
 
   def index
     @competitors = Competitor.all
+  end
+
+  def new
+    @competitor = Competitor.new
   end
 
   def create

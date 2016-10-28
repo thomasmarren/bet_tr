@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :sessions, except: [:new]
   resources :competitors, except: [:edit, :update]
   resources :matchups
-  resources :bets, except: [:new]
+  resources :bets
 
   get "/login", to: "sessions#new", as: :login
   get "/signup", to: "users#new", as: :signup
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "/random", to: "matchups#create_random_matchup"
 
   #test route
+
   post "/placebet", to: "bets#new"
 
 

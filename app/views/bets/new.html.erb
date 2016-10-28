@@ -4,6 +4,8 @@
 <h3>Matchup: <%= @matchup_competitor.matchup.name%></h3>
 <h3>Competitor: <%= @matchup_competitor.competitor.name%></h3>
 
+<%= flash[:bet_message] if flash[:bet_message] %>
+
 <%= label_tag :amount %>
 <%= text_field_tag 'bet[amount]' %>
 <%= hidden_field_tag 'bet[matchups_competitors_id]', @matchup_competitor.id %>

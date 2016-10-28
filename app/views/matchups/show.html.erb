@@ -17,7 +17,6 @@
 
     <div class="matchup_name">
 
-      <!-- We need matchup.id and competitor.id -->
       <%= form_tag "/placebet" do %>
       <%= hidden_field_tag 'matchup', @matchup.id  %>
       <%= hidden_field_tag 'competitor', @matchup.competitors.last.id  %>
