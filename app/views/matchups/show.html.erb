@@ -1,8 +1,34 @@
 <h1>  <%= @matchup.matchup_type.name %> </h1>
 <h2>featuring: </h2>
-<h3><%= @matchup.competitors.first.name %></h3>
-VS
-<h3> <%= @matchup.competitors.last.name %> </h3>
+
+
+  <div class="row matchup_names">
+
+    <div class="matchup_name">
+      <h4><%= @matchup.competitors.first.name %></h4>
+    </div>
+
+    <div class="matchup_name">
+      VS
+    </div>
+
+
+    <div class="matchup_name">
+
+      <!-- <%= form_for @matchup.competitors.last do |f| %>
+
+        <%= f.submit "#{@matchup.competitors.last.name}", "/placebet", action: :placebet %>
+
+      <% end %> -->
+
+      <%= form_tag "/placebet" do %>
+      <%= submit_tag "#{@matchup.competitors.last.name}" %>
+      <% end %>
+
+    </div>
+
+  </div>
+
 ON
 
 <h3> <%= @matchup.deadline %> </h3>

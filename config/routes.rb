@@ -13,5 +13,8 @@ Rails.application.routes.draw do
 
   post "/random", to: "matchups#create_random_matchup"
 
+  #test route
+  post "/placebet", to: "users#placebet"
+
 
 end

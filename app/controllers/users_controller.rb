@@ -40,6 +40,10 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def placebet
+    binding.pry
+  end
+
 
 private
 

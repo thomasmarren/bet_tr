@@ -22,7 +22,7 @@ nav {
 }
 
 .signup {
-  margin: 10px 40px 0px 0px; 
+  margin: 10px 40px 0px 0px;
   float: right;
 }
 
@@ -79,4 +79,19 @@ ul {
 
 .matchup_blocks:hover {
   background: beige;
+}
+
+
+/****************
+  MATCHUPS SHOW
+*****************/
+
+.matchup_names {
+  text-align: center;
+}
+
+.matchup_name {
+  display: inline;
+  margin: 100px 100px;
+  float: left;
 }
