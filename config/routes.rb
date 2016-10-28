@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   #test route
 
+  get "/placebet", to: "matchups#index"
   post "/placebet", to: "bets#new"
 
 

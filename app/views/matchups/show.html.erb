@@ -1,3 +1,14 @@
+
+<div class="countdown">
+
+<h4>Time left to place your bets</h4>
+
+<div id="clockdiv"></div>
+
+</div>
+
+<br>
+
 <h1>  <%= @matchup.name %> </h1>
 
 <h1>  <%= @matchup.matchup_type.name %> </h1>
@@ -31,3 +42,41 @@
          at
  <%= @matchup.deadline.strftime("%I:%M %p") %> </h3>
 <%= link_to "See All Matchups", matchups_path %>
+
+<script type="text/javascript">
+var deadline = 'October 31 2016 18:30:00 GMT+0200';
+
+function getTimeRemaining(endtime){
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor( (t/1000) % 60 );
+  var minutes = Math.floor( (t/1000/60) % 60 );
+  var hours = Math.floor( (t/(1000*60*60)) % 24 );
+  var days = Math.floor( t/(1000*60*60*24) );
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+getTimeRemaining(deadline).minutes
+
+function initializeClock(id, endtime){
+  var clock = document.getElementById(id);
+  var timeinterval = setInterval(function(){
+    var t = getTimeRemaining(endtime);
+    clock.innerHTML =  t.days + " : " +
+                       t.hours + " : " +
+                       t.minutes + " : " +
+                       t.seconds;
+    if(t.total<=0){
+      clearInterval(timeinterval);
+    }
+  },1000);
+}
+
+initializeClock('clockdiv', deadline);
+
+</script>
