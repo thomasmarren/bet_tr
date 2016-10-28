@@ -1,10 +1,9 @@
 class BetsController < ApplicationController
 
   def new
-    # matchup = Matchup.find(params[:matchup_id])
-    # competitor = Matchup.find(params[:competitor_id])
-    # @matchup_competitor = MatchupsCompetitor.find_by(matchup_id: matchup.id, competitor_id: competitor.id)
-    @matchup_competitor = MatchupsCompetitor.find(36)
+    matchup = Matchup.find(params[:matchup])
+    competitor = Competitor.find(params[:competitor])
+    @matchup_competitor = MatchupsCompetitor.find_by(matchup_id: matchup.id, competitor_id: competitor.id)
   end
 
   def create
