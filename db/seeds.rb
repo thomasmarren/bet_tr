@@ -23,6 +23,7 @@ User.create(name: 'Mike',username: 'Huckabee',password: 'idiothead')
 User.create(name: 'Jimbles',username: 'Nomtrombo',password: 'boijeanius')
 User.create(name: 'Timerthy',username: 'TurnerOdd',password: 'sirwishalot')
 User.create(name: 'Chuckie',username: 'BabehGing',password: 'lostsouls')
+User.create(name: "user", username: 'user', password: 'password')
 
 Competitor.create(name: "PAINTRAIN")
 Competitor.create(name: "DEATHOCLOCK")
