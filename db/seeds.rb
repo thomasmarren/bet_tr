@@ -18,7 +18,7 @@ Matchup.create(name: "Painacopia", odds: 1, deadline: DateTime.new(2016, 11, 16)
 Matchup.create(name: "BloodBathers", odds: 15, deadline: DateTime.new(2017, 3, 19), matchup_type_id: 3)
 Matchup.create(name: "BigBangs", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 1)
 
-
+User.create(name: 'Macdaddy',username: 'macdaddy',password: 'password')
 User.create(name: 'Mike',username: 'Huckabee',password: 'idiothead')
 User.create(name: 'Jimbles',username: 'Nomtrombo',password: 'boijeanius')
 User.create(name: 'Timerthy',username: 'TurnerOdd',password: 'sirwishalot')

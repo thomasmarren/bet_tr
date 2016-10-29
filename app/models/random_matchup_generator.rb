@@ -2,15 +2,11 @@ class RandomMatchupGenerator
 
   def competitors
     #Only for matchups betwen two competitors
-    competitors = Competitor.order_by_rand.limit(2).all
-    until competitors.ids.uniq.length == competitors.ids.length
-      competitors = Competitor.order_by_rand.limit(2).all
-    end
-    competitors
+    Competitor.find_by_sql("SELECT * FROM competitors ORDER BY RANDOM() LIMIT 2")
   end
 
   def matchup_type
-    MatchupType.order_by_rand.first
+    MatchupType.find_by_sql("SELECT * FROM matchup_types ORDER BY RANDOM() LIMIT 1").first
   end
 
   def deadline
