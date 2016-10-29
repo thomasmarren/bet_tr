@@ -12,17 +12,49 @@ nav {
   float: left;
 }
 
-.nav_profile {
-  margin: 10px 40px 0px 0px;
+.logo a {
+  text-decoration: none;
+}
+
+.nav_right {
+  margin-right: 50px;
   float: right;
 }
 
-.nav_profile h3 {
+.nav_right label{
+  display: inline;
+}
+
+.nav_right h3 {
   text-align: right;
 }
 
+.signin {
+  margin-top: 10px;
+}
+
+.signin input{
+  margin: 0px;
+  padding: 2px;
+  width: 125px;
+}
+
+input.sign_in_button {
+  width: 75px;
+  height: 25px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  background-color: dodgerblue;
+}
+
+input.sign_in_button:hover {
+  background-color: white;
+  color: dodgerblue;
+  border: 2px solid dodgerblue;
+}
+
 .signup {
-  margin: 10px 40px 0px 0px;
   float: right;
 }
 

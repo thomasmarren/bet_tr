@@ -27,14 +27,16 @@
     <nav>
 
       <div class="logo">
-        <h1>Bet.tr</h1>
-        <h5>Clever tag line</h5>
+        <a href="/matchups">
+          <h1>Bet.tr</h1>
+          <h5>Clever tag line</h5>
+        </a>
       </div>
 
-      <%= link_to "View All Future Matchups", matchups_path %>
+      <!-- <%= link_to "View All Future Matchups", matchups_path %> -->
 
       <% if logged_in? %>
-      <div class="nav_profile">
+      <div class="nav_right">
 
         <div class="btn-group">
           <a class="btn btn-primary" href="/users/<%= current_user.id %>"><i class="fa fa-user fa-fw"></i><%= current_user.username %></a>
@@ -51,16 +53,27 @@
         </div>
           <h3><i class="fa fa-usd" aria-hidden="true"></i><%= current_user.balance %></h3>
 
+      </div>
+
         <% else %>
 
-          <div class="signup">
-            <h4><%= link_to "Sign Up", signup_path %></h4>
-          </div>
-          <div class="signup">
-            <h4><%= link_to "Sign In", login_path %></h4>
+        <div class="nav_right">
+
+          <div class="signin">
+            <%= form_tag "/sessions" do %>
+            <%= label_tag :username %>
+            <%= text_field_tag :username %>
+            <%= label_tag :password %>
+            <%= password_field_tag :password %>
+            <%= submit_tag "Sign in", :class => "sign_in_button" %>
+            <% end %>
           </div>
 
-      </div>
+          <div class="signup">
+            <p><%= link_to "Not A Member? Sign Up", signup_path %></p>
+          </div>
+
+        </div>
 
       <% end %>
 
