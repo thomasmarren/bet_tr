@@ -1,22 +1,31 @@
 class RandomMatchupGenerator
 
-  def randomize
-
+  def competitors
+    #Only for matchups betwen two competitors
     competitors = Competitor.order_by_rand.limit(2).all
-
     until competitors.ids.uniq.length == competitors.ids.length
       competitors = Competitor.order_by_rand.limit(2).all
     end
+    competitors
+  end
 
-    matchup_type = MatchupType.order_by_rand.first
+  def matchup_type
+    MatchupType.order_by_rand.first
+  end
 
+  def deadline
     #chooses a random deadline between tomorrow and 5 days
-    deadline = DateTime.now + rand(1..5)
+    DateTime.now + rand(1..5)
+  end
 
-    @matchup = Matchup.new(deadline: deadline, matchup_type_id: matchup_type.id)
-    #@matchup.name = "#{@competitor1.name} VS #{@competitor2.name}"
+  def matchup_name
+    competitors.map(&:name).join(" vs ")
+  end
+
+  def randomize
+    @matchup = Matchup.new(name: matchup_name, deadline: deadline, matchup_type_id: matchup_type.id)
     @matchup.competitors = competitors
-
+    @matchup
   end
 
 end
