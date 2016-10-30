@@ -5,34 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-MatchupType.create(name: "Rock, Paper, Scissors")
-MatchupType.create(name: "Issa Race")
-MatchupType.create(name: "Wrestling of the Arms")
-MatchupType.create(name: "Pie Eating")
 
-Matchup.create(name: "First MATCH", odds: 2, deadline: DateTime.new(2017, 1, 1), matchup_type_id: 1)
-Matchup.create(name: "CriminalFest", odds: 20, deadline: DateTime.new(2016, 12, 16), matchup_type_id: 2)
-Matchup.create(name: "Slamotopia", odds: 5, deadline: DateTime.new(2017, 11, 9), matchup_type_id: 3)
-Matchup.create(name: "Wallopolooza", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 4)
-Matchup.create(name: "Painacopia", odds: 1, deadline: DateTime.new(2016, 11, 16), matchup_type_id: 2)
-Matchup.create(name: "BloodBathers", odds: 15, deadline: DateTime.new(2017, 3, 19), matchup_type_id: 3)
-Matchup.create(name: "BigBangs", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 1)
-
-
-User.create(name: 'Mike',username: 'Huckabee',password: 'idiothead')
-User.create(name: 'Jimbles',username: 'Nomtrombo',password: 'boijeanius')
-User.create(name: 'Timerthy',username: 'TurnerOdd',password: 'sirwishalot')
-User.create(name: 'Chuckie',username: 'BabehGing',password: 'lostsouls')
 User.create(name: "user", username: 'user', password: 'password')
+User.create(name: "macdaddy", username: 'macdaddy', password: 'password')
+10.times do |user|
+  User.create(name: Faker::Name.name, username: Faker::Internet.user_name, password: 'password')
+end
 
-Competitor.create(name: "PAINTRAIN")
-Competitor.create(name: "DEATHOCLOCK")
-Competitor.create(name: "BLOODRIVER")
-Competitor.create(name: "STRONGATHAN")
-Competitor.create(name: "LADYLOVELESS")
-Competitor.create(name: "MISSDISTRESS")
-Competitor.create(name: "WALLOPINGWOMAN")
-Competitor.create(name: "MERCILESSMOTHER")
+14.times do |competitor|
+  Competitor.create(name: Faker::Superhero.name)
+end
+
+7.times do |mt|
+  MatchupType.create(name: "Battle of " + Faker::Hipster.word.pluralize.capitalize)
+end
+
+
+7.times do |matchup|
+  Matchup.create(name: Faker::Hipster.word.capitalize + "apalooza", deadline: Faker::Date.forward(5), matchup_type_id: rand(1..7))
+end
 
 MatchupsCompetitor.create(matchup_id:  1, competitor_id: 1)
 MatchupsCompetitor.create(matchup_id:  1, competitor_id: 2)
@@ -48,3 +39,35 @@ MatchupsCompetitor.create(matchup_id:  6, competitor_id: 6)
 MatchupsCompetitor.create(matchup_id:  6, competitor_id: 7)
 MatchupsCompetitor.create(matchup_id:  7, competitor_id: 7)
 MatchupsCompetitor.create(matchup_id:  7, competitor_id: 8)
+
+
+
+#
+# MatchupType.create(name: "Rock, Paper, Scissors")
+# MatchupType.create(name: "Issa Race")
+# MatchupType.create(name: "Wrestling of the Arms")
+# MatchupType.create(name: "Pie Eating")
+#
+# Matchup.create(name: "First MATCH", odds: 2, deadline: DateTime.new(2017, 1, 1), matchup_type_id: 1)
+# Matchup.create(name: "CriminalFest", odds: 20, deadline: DateTime.new(2016, 12, 16), matchup_type_id: 2)
+# Matchup.create(name: "Slamotopia", odds: 5, deadline: DateTime.new(2017, 11, 9), matchup_type_id: 3)
+# Matchup.create(name: "Wallopolooza", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 4)
+# Matchup.create(name: "Painacopia", odds: 1, deadline: DateTime.new(2016, 11, 16), matchup_type_id: 2)
+# Matchup.create(name: "BloodBathers", odds: 15, deadline: DateTime.new(2017, 3, 19), matchup_type_id: 3)
+# Matchup.create(name: "BigBangs", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 1)
+#
+#
+# User.create(name: 'Mike',username: 'Huckabee',password: 'idiothead')
+# User.create(name: 'Jimbles',username: 'Nomtrombo',password: 'boijeanius')
+# User.create(name: 'Timerthy',username: 'TurnerOdd',password: 'sirwishalot')
+# User.create(name: 'Chuckie',username: 'BabehGing',password: 'lostsouls')
+# User.create(name: "user", username: 'user', password: 'password')
+#
+# Competitor.create(name: "PAINTRAIN")
+# Competitor.create(name: "DEATHOCLOCK")
+# Competitor.create(name: "BLOODRIVER")
+# Competitor.create(name: "STRONGATHAN")
+# Competitor.create(name: "LADYLOVELESS")
+# Competitor.create(name: "MISSDISTRESS")
+# Competitor.create(name: "WALLOPINGWOMAN")
+# Competitor.create(name: "MERCILESSMOTHER")

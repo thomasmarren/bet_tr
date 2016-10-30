@@ -1,0 +1,9 @@
+<h1>All Matchup Types</h1>
+
+<ul>
+<% @matchup_types.each do |mt| %>
+  <li><%= link_to mt.name, mt %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Add New Matchup Type', new_matchup_type_path %>
