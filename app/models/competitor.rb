@@ -20,9 +20,19 @@ class Competitor < ActiveRecord::Base
     )
   end
 
-  def users_who_bet
+  def users
     user_ids = bets.map(&:user_id).uniq
     users = User.find(user_ids)
+  end
+
+  def total_bets_amount
+    bets.map(&:amount).inject(0){|sum,x| sum + x }
+  end
+
+  def matchup_types
+    matchups = self.matchups
+    matchup_type_ids = matchups.map(&:matchup_type_id)
+    MatchupType.find(matchup_type_ids)
   end
 
 end
