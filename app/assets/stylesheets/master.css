@@ -118,17 +118,40 @@ ul {
   MATCHUPS SHOW
 *****************/
 
-.matchup_names {
-  text-align: center;
-}
-
-.matchup_name {
-  display: inline;
-  margin: 100px 100px;
-  float: left;
-}
-
 .countdown {
   text-align: center;
   font-size: 2em;
+}
+
+.matchup_name_and_type {
+  text-align: center;
+}
+
+.competitor_buttons {
+  margin: 100px 0px;
+  text-align: center;
+}
+
+.competitor_buttons input {
+  padding: 50px;
+  font-size: 3em;
+  color: white;
+  background-color: dodgerblue;;
+  border: solid 2px white;
+  border-radius: 12px;
+}
+
+.competitor_buttons input:hover {
+  color: dodgerblue;
+  background-color: beige;
+  border: solid 2px dodgerblue;
+}
+
+.competitor_buttons h1 {
+  padding: 50px;
+  vertical-align: text-bottom;
+}
+
+.deadline {
+  text-align: center;
 }
