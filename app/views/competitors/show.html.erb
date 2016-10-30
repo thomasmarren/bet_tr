@@ -1,2 +1,21 @@
-Competitor: <%= @competitor.name %><br>
+<h1><%= @competitor.name %><br></h1>
 <%= link_to 'View All Competitors', competitors_path %>
+
+<h3>All Matchups</h3>
+
+<% @competitor.matchups.each do |matchup| %>
+  <a href="/matchups/<%= matchup.id %>">
+    <%= matchup.name %><br>
+    <%= matchup.matchup_type.name %><br>
+    <!-- TOO MUCH CODE? -->
+    vs. <%= matchup.competitors.map(&:name).select{|c| c != @competitor.name}.first %><br>
+    <%= matchup.deadline.strftime("%A, %B %d, '%y") %> at <%= matchup.deadline.strftime("%I:%M %p") %><br>
+  </a>
+  <br>
+<% end %>
+
+<h3>Users who have bet on <%= @competitor.name %></h3>
+
+<% @competitor.users_who_bet.each do |user| %>
+<%= link_to user.name, user %><br>
+<% end %>
