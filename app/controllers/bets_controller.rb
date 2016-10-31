@@ -2,6 +2,24 @@ class BetsController < ApplicationController
 
   before_action :require_login
 
+  def index
+    #require admin access too
+    @users = User.all
+    @users_select_array = @users.each_with_object([]) do |user, array|
+      array << [user.name, user.id]
+    end
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @bets = @user.bets
+    else
+      @bets = Bet.all
+      # bets = Bet.find_by_sql("SELECT user_id, count(*) as count FROM bets GROUP BY bets.user_id")
+      # @chart_info = bets.map do |bet|
+      #   [bet.user.name, bet.count]
+      # end
+    end
+  end
+
   def new
     matchup = Matchup.find(params[:matchup])
     competitor = Competitor.find(params[:competitor])
@@ -9,8 +27,6 @@ class BetsController < ApplicationController
   end
 
   def create
-    # amount must be > 0 and not nil
-
     if valid_bet?
       bet = Bet.new(bet_params)
       bet.user_id = session[:user_id]
@@ -24,7 +40,6 @@ class BetsController < ApplicationController
       render :new
     end
   end
-
 
   private
 

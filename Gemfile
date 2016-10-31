@@ -31,6 +31,7 @@ gem 'pry'
 gem 'rb-readline'
 
 gem 'randumb'
+gem 'chartkick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -41,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 group :development do
