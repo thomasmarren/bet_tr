@@ -5,6 +5,9 @@ class Competitor < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, message: "Competitor already exists"
 
+  def name
+    self[:name].upcase unless self[:name].nil?
+  end
 
   def bets
     Bet.find_by_sql(
