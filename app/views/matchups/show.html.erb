@@ -21,7 +21,7 @@
   <div class="span5">
     <%= form_tag "/placebet" do %>
     <%= hidden_field_tag 'matchup', @matchup.id  %>
-    <%= hidden_field_tag 'competitor', @matchup.competitors.last.id  %>
+    <%= hidden_field_tag 'competitor', @matchup.competitors.first.id  %>
     <% if @matchup.deadline > Time.now %>
       <%= submit_tag "#{@matchup.competitors.first.name}" %>
     <% else %>

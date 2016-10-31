@@ -13,10 +13,7 @@
           <div class="col-xs-6 col-centered col-fixed matchup_blocks">
             <h3> <%= matchup.name %></h3>
           <h4>Competitors</h4>
-            <% matchup.competitors.each.with_index(1) do |comp, idx| %>
-              <%= comp.name %>
-              <%= "vs." unless idx == matchup.competitors.length %>
-            <% end %><br>
+            <%= matchup.competitors.map(&:name).join(" vs. ") %><br>
           <h4>Type</h4>
           <%= matchup.matchup_type.name %><br>
           <h4>Matchup Date</h4>
@@ -38,10 +35,7 @@
           <div class="col-xs-6 col-centered col-fixed matchup_blocks">
             <h3> <%= matchup.name %></h3>
           <h4>Competitors</h4>
-            <% matchup.competitors.each.with_index(1) do |comp, idx| %>
-              <%= comp.name %>
-              <%= "vs." unless idx == matchup.competitors.length %>
-            <% end %><br>
+            <%= matchup.competitors.map(&:name).join(" vs. ") %><br>
           <h4>Type</h4>
           <%= matchup.matchup_type.name %><br>
           <h4>Matchup Date</h4>

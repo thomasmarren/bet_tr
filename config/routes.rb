@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "sessions#new"
+  root "matchups#index"
 
   resources :users, except: [:new]
   resources :sessions, except: [:new]
