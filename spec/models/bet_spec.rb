@@ -17,17 +17,17 @@ RSpec.describe Bet, type: :model do
     @mc4 = MatchupsCompetitor.create(matchup_id: 1, competitor_id: 4, winner: true)
   end
 
-  let(:first_bet) {Bet.create(user_id: 1, matchups_competitors_id: 1, amount: 20)}
-  let(:second_bet) {Bet.create(user_id: 1, matchups_competitors_id: 3, amount: 20)}
+  let(:first_bet) {Bet.create(user_id: 1, matchups_competitor_id: 1, amount: 20)}
+  let(:second_bet) {Bet.create(user_id: 1, matchups_competitor_id: 3, amount: 20)}
 
-  it "is valid with a user_id and a matchups_competitors_id" do
+  it "is valid with a user_id and a matchups_competitor_id" do
     binding.pry
     expect(first_bet).to be_valid
     expect(second_bet).to be_valid
   end
 
   # it "cannot bet more than your balance" do
-  #   large_bet = Bet.create(user_id: 1, matchups_competitors_id: 2, amount: 1000)
+  #   large_bet = Bet.create(user_id: 1, matchups_competitor_id: 2, amount: 1000)
   #   # expect an error??
   #   expect
   # end
@@ -56,7 +56,7 @@ RSpec.describe Bet, type: :model do
     end
 
     it 'pays out property and closes the bet' do
-      new_bet = Bet.create(user_id: 2, matchups_competitors_id:4, amount: 10)
+      new_bet = Bet.create(user_id: 2, matchups_competitor_id:4, amount: 10)
       expect(@user_2.balance).to eq(90)
       expect(new_bet.status).to eq("Open")
       expect(new_bet.payout_amount).to eq(20)

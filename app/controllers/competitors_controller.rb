@@ -50,7 +50,7 @@ private
     SELECT SUM(amount) AS bets, competitors.id, competitors.name
     FROM bets
     JOIN matchups_competitors
-    ON bets.matchups_competitors_id = matchups_competitors.id
+    ON bets.matchups_competitor_id = matchups_competitors.id
     JOIN competitors
     ON matchups_competitors.competitor_id = competitors.id
     GROUP BY competitors.id;

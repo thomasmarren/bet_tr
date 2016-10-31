@@ -11,15 +11,11 @@ class Bet < ActiveRecord::Base
   end
 
   def matchup
-    matchup_competitor.matchup
+    matchups_competitor.matchup
   end
 
   def competitor
-    matchup_competitor.competitor
-  end
-
-  def matchup_competitor
-    MatchupsCompetitor.find(self.matchups_competitors_id)
+    matchups_competitor.competitor
   end
 
   def payout_amount

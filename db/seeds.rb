@@ -72,5 +72,5 @@ m_id = 1
 end
 
 20.times do
-  Bet.create(user_id: rand(1..10), matchups_competitors_id: rand(1..20) , amount: rand(1..5))
+  Bet.create(user_id: rand(1..10), matchups_competitor_id: rand(1..20) , amount: rand(1..5))
 end

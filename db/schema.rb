@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031024034) do
+ActiveRecord::Schema.define(version: 20161031150101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bets", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "matchups_competitors_id"
+    t.integer "matchups_competitor_id"
     t.integer "amount"
     t.string  "status"
   end

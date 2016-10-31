@@ -15,7 +15,7 @@ class Competitor < ActiveRecord::Base
     SELECT *
     FROM bets
     JOIN matchups_competitors
-    ON bets.matchups_competitors_id = matchups_competitors.id
+    ON bets.matchups_competitor_id = matchups_competitors.id
     JOIN competitors
     ON matchups_competitors.competitor_id = competitors.id
     WHERE competitors.id = #{self.id}

@@ -28,6 +28,7 @@ class BetsController < ApplicationController
 
   def create
     if valid_bet?
+      binding.pry
       bet = Bet.new(bet_params)
       bet.user_id = session[:user_id]
       bet.save
@@ -36,7 +37,7 @@ class BetsController < ApplicationController
       user.save!
       redirect_to user
     else
-      @matchup_competitor = MatchupsCompetitor.find(params[:bet][:matchups_competitors_id])
+      @matchup_competitor = MatchupsCompetitor.find(params[:bet][:matchups_competitor_id])
       render :new
     end
   end
@@ -44,7 +45,7 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:amount, :matchups_competitors_id)
+    params.require(:bet).permit(:amount, :matchups_competitor_id)
   end
 
   def valid_bet?
