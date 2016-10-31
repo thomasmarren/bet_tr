@@ -27,6 +27,7 @@ class MatchupsController < ApplicationController
     if same_competitors?
       redirect_to new_matchup_path
     else
+       
       @matchup = Matchup.new(deadline: deadline, matchup_type_id: @matchup_type.id)
       @matchup.name = "#{@competitor1.name} VS #{@competitor2.name}"
       @matchup.competitors = [@competitor1, @competitor2]
