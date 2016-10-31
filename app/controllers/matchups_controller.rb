@@ -23,12 +23,16 @@ class MatchupsController < ApplicationController
     @competitor1 = Competitor.find(competitor1)
     @competitor2 = Competitor.find(competitor2)
     @matchup_type = MatchupType.find(matchup_type)
+    if matchup_name == ""
+      name = "#{@competitor1.name} VS #{@competitor2.name}"
+    else
+      name = matchup_name.upcase
+    end
 
     if same_competitors?
       redirect_to new_matchup_path
     else
-      @matchup = Matchup.new(deadline: deadline, matchup_type_id: @matchup_type.id)
-      @matchup.name = "#{@competitor1.name} VS #{@competitor2.name}"
+      @matchup = Matchup.new(name: name, deadline: deadline, matchup_type_id: @matchup_type.id)
       @matchup.competitors = [@competitor1, @competitor2]
       @matchup.save
       redirect_to @matchup
@@ -55,6 +59,10 @@ class MatchupsController < ApplicationController
   end
 
   private
+
+  def matchup_name
+    params[:matchup][:name]
+  end
 
   def competitor1
     params[:competitor1]
