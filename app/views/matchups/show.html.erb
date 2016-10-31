@@ -1,3 +1,4 @@
+<%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <div class="countdown">
   <h4>Time left to place your bets</h4>
   <div id="clockdiv"></div>
@@ -37,6 +38,10 @@
 <div class="deadline">
   <h3> <%= @matchup.deadline.strftime("%A, %B %d, '%y") %></h3>
   <h3><%= @matchup.deadline.strftime("%I:%M %p") %></h3>
+</div>
+
+<div>
+<%= pie_chart(@matchup.data_for_bets_pie) %>
 </div>
 
 <script type="text/javascript">
