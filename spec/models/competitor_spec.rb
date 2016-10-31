@@ -20,8 +20,7 @@ RSpec.describe Competitor, type: :model do
     end
   end
 
-  #?????? Matchup.create(name: "Battle1") won't save
-
+  # Matchup.create(name: "Battle1")
   # describe '#users' do
   #   it 'returns all users who bet on competitor' do
   #     expect(competitor1.users).to include(user)

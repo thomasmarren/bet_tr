@@ -40,7 +40,7 @@
 </div>
 
 <script type="text/javascript">
-var deadline = "<%= @matchup.deadline.strftime("%B %d %Y %I:%M:%S GMT+0200") %>";
+var deadline = "<%= @matchup.deadline.strftime("%B %d %Y %I:%M:%S %Z%z") %>";
 
 function getTimeRemaining(endtime){
   var t = Date.parse(endtime) - Date.parse(new Date());

@@ -42,7 +42,7 @@ Competitor.create(name: "MERCILESSMOTHER")
 end
 
 20.times do |competitor|
-  Competitor.create(name: Faker::Superhero.name.upcase)
+  Competitor.create(name: Faker::Superhero.name)
 end
 
 10.times do |mt|
