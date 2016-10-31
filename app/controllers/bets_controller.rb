@@ -28,7 +28,6 @@ class BetsController < ApplicationController
 
   def create
     if valid_bet?
-      binding.pry
       bet = Bet.new(bet_params)
       bet.user_id = session[:user_id]
       bet.save

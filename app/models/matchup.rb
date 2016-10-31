@@ -18,8 +18,8 @@ class Matchup < ActiveRecord::Base
         winner = competitors[1]
         loser = competitors[0]
       end
-      won = MatchupsCompetitors.find_by(competitor_id: winner.id, matchup_id: self.id)
-      lost = MatchupsCompetitors.find_by(competitor_id: loser.id, matchup_id: self.id)
+      won = MatchupsCompetitor.find_by(competitor_id: winner.id, matchup_id: self.id)
+      lost = MatchupsCompetitor.find_by(competitor_id: loser.id, matchup_id: self.id)
       won.winner = true
       lost.winner = false
       won.save
