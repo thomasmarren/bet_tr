@@ -4,6 +4,16 @@ class CompetitorsController < ApplicationController
 
   def index
     @competitors = Competitor.all
+    mc = MatchupsCompetitor.find_by_sql(
+    <<-SQL
+    SELECT competitor_id, count(*) AS count
+    FROM matchups_competitors
+    GROUP BY matchups_competitors.competitor_id
+    SQL
+    )
+    @chart = mc.map do |mc|
+      [Competitor.find(mc.competitor_id).name, mc.count]
+    end
   end
 
   def new

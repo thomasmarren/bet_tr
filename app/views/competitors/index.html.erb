@@ -1,9 +1,13 @@
 <h1>All Competitors</h1>
 
+<%= link_to 'Add New Competitor', new_competitor_path %>
+<br>
+<br>
 <ul>
 <% @competitors.each do |competitor| %>
   <li><%= link_to competitor.name, competitor %></li>
 <% end %>
 </ul>
 
-<%= link_to 'Add New Competitor', new_competitor_path %>
+<h4 style="text-align: center;">Number of Matchups per Competitor</h4>
+<%= column_chart(@chart) %>
