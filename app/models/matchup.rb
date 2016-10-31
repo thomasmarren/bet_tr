@@ -18,8 +18,8 @@ class Matchup < ActiveRecord::Base
         winner = competitors[1]
         loser = competitors[0]
       end
-      won = MatchupsCompetitors.find_by(competitor_id: winner.id, matchup_id: self.id)
-      lost = MatchupsCompetitors.find_by(competitor_id: loser.id, matchup_id: self.id)
+      won = MatchupsCompetitor.find_by(competitor_id: winner.id, matchup_id: self.id)
+      lost = MatchupsCompetitor.find_by(competitor_id: loser.id, matchup_id: self.id)
       won.winner = true
       lost.winner = false
       won.save
@@ -47,12 +47,38 @@ class Matchup < ActiveRecord::Base
   def format_time
     self.deadline.strftime("%B %d %Y %I:%M:%S GMT+0200")
   end
-  #
-  # def get_bets_by_competitor
-  #   data =
-  # end
 
-  # Matchup.find_by_sql("select matchup_type_id from matchups group by matchups.matchup_type_id")
+  def data_for_bets_pie
+    self.get_bets_by_competitor.each_with_object({}) do |obj, hash|
+      hash[Competitor.find(obj.competitor).name] = obj.total
+    end
+  end
+
+  def get_bets_by_competitor
+    Matchup.find_by_sql(
+    <<-SQL
+    SELECT SUM(amount) AS total, competitor_id AS competitor
+    FROM matchups_competitors
+    JOIN bets ON matchups_competitors.id = bets.matchups_competitor_id
+    JOIN matchups
+    ON matchups.id = matchups_competitors.matchup_id
+    WHERE matchups.id = #{self.id} GROUP BY competitor_id;
+    SQL
+    )
+  end
+
+
+  private
+
+
 
 end
+# Matchup.find_by_sql("select matchup_type_id from matchups group by matchups.matchup_type_id")
+
 # matchups.matchup_type_id AS matchups_matchup_type_id
+# SELECT SUM(amount), competitor_id FROM matchups_competitors JOIN bets
+# ON matchups_competitors.id = bets.matchups_competitors_id GROUP BY competitor_id;
+
+# SELECT SUM(amount), competitor_id FROM matchups_competitors JOIN bets
+# ON matchups_competitors.id = bets.matchups_competitors_id JOIN matchups
+# ON matchups.id = matchups_competitors.matchup_id WHERE matchups.id = 5 GROUP BY competitor_id;

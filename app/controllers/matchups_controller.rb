@@ -4,6 +4,11 @@ class MatchupsController < ApplicationController
 
   def index
     @matchups = Matchup.all
+    @matchups.each do |matchup|
+      if matchup.closed?
+        matchup.winner
+      end
+    end
     @matchups_open = Matchup.where("deadline > ?", Time.now)
     @matchups_closed = Matchup.where("deadline < ?", Time.now)
   end
@@ -33,6 +38,7 @@ class MatchupsController < ApplicationController
 
   def show
     @matchup = Matchup.find(params[:id])
+    @matchup.winner
   end
 
   def destroy
@@ -70,6 +76,5 @@ class MatchupsController < ApplicationController
       flash[:failed_creation] = "You cannot pick the same competitor for a matchup."
     end
   end
-
 
 end
