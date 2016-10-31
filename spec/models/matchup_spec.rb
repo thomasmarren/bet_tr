@@ -15,7 +15,7 @@ RSpec.describe Matchup, type: :model do
 
   describe '#matchup_type_id' do
     it 'points to a valid matchup type object' do
-      binding.pry
+       
       expect(MatchupType.find(matchup.matchup_type_id)).to be_a(MatchupType)
     end
   end

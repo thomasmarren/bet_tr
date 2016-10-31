@@ -45,7 +45,7 @@ class Matchup < ActiveRecord::Base
   end
 
   def format_time
-    self.deadline.strftime("%B %d %Y %I:%M:%S %Z%z")
+    self.deadline.strftime("%B %d %Y %I:%M:%S GMT+0200")
   end
   #
   # def get_bets_by_competitor

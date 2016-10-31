@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031150101) do
+ActiveRecord::Schema.define(version: 20161031204210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20161031150101) do
     t.float    "odds"
     t.datetime "deadline"
     t.integer  "matchup_type_id"
+    t.string   "status",          default: "open"
   end
 
   create_table "matchups_competitors", force: :cascade do |t|

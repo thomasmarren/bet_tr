@@ -1,7 +1,12 @@
-<div class="countdown">
-  <h4>Time left to place your bets</h4>
-  <div id="clockdiv"></div>
-</div>
+<% if @matchup.deadline > Time.now %>
+  <div class="countdown">
+    <h4>Time left to place your bets</h4>
+    <div id="clockdiv"></div>
+  </div>
+<% else %>
+  <h1>CLOSED</h1>
+  <h2>Winner: ?</h2>
+<% end %>
 
 <br>
 
@@ -15,9 +20,13 @@
   <div class="span5">
     <%= form_tag "/placebet" do %>
     <%= hidden_field_tag 'matchup', @matchup.id  %>
-    <%= hidden_field_tag 'competitor', @matchup.competitors.first.id  %>
-    <%= submit_tag "#{@matchup.competitors.first.name}" %>
+    <%= hidden_field_tag 'competitor', @matchup.competitors.last.id  %>
+    <% if @matchup.deadline > Time.now %>
+      <%= submit_tag "#{@matchup.competitors.first.name}" %>
+    <% else %>
+      <%= submit_tag "#{@matchup.competitors.first.name}", disabled: true %>
     <% end %>
+  <% end %>
   </div>
 
   <div class="span2">
@@ -25,23 +34,27 @@
   </div>
 
   <div class="span5">
-    <%= form_tag "/placebet" do %>
-    <%= hidden_field_tag 'matchup', @matchup.id  %>
-    <%= hidden_field_tag 'competitor', @matchup.competitors.last.id  %>
-    <%= submit_tag "#{@matchup.competitors.last.name}" %>
+      <%= form_tag "/placebet" do %>
+      <%= hidden_field_tag 'matchup', @matchup.id  %>
+      <%= hidden_field_tag 'competitor', @matchup.competitors.last.id  %>
+      <% if @matchup.deadline > Time.now %>
+        <%= submit_tag "#{@matchup.competitors.last.name}" %>
+      <% else %>
+        <%= submit_tag "#{@matchup.competitors.last.name}", disabled: true %>
+      <% end %>
     <% end %>
+
   </div>
 
 </div>
 
-<div class="deadline">
-  <h3> <%= @matchup.deadline.strftime("%A, %B %d, '%y") %></h3>
-  <h3><%= @matchup.deadline.strftime("%I:%M %p") %></h3>
-</div>
-
+  <div class="deadline">
+    <h3> <%= @matchup.deadline.strftime("%A, %B %d, '%y") %></h3>
+    <h3><%= @matchup.deadline.strftime("%I:%M %p") %></h3>
+  </div>
 <script type="text/javascript">
 
-var deadline = "<%= @matchup.format_time %>";
+var deadline = "<%= @matchup.deadline.strftime("%B %d %Y %H:%M:%S UTC-0400") %>";
 
 function getTimeRemaining(endtime){
   var t = Date.parse(endtime) - Date.parse(new Date());
