@@ -33,10 +33,6 @@
         </a>
       </div>
 
-      <div class="links">
-        <%= link_to "View All Competitors", competitors_path %>
-      </div>
-
       <% if logged_in? %>
       <div class="nav_right">
 
@@ -78,6 +74,12 @@
         </div>
 
       <% end %>
+
+      <div class="links">
+        <%= link_to "View All Matchups", matchups_path %>
+        <%= link_to "View All Users", users_path %>
+        <%= link_to "View All Competitors", competitors_path %>
+      </div>
 
   </nav>
 
