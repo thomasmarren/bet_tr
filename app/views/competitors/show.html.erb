@@ -7,12 +7,12 @@
 <%= "None." if @competitor.matchups.empty? %>
 <% @competitor.matchups.each do |matchup| %>
   <a href="/matchups/<%= matchup.id %>">
-    <%= matchup.name %><br>
+    <h4><%= matchup.name %></h4>
     <%= matchup.matchup_type.name %><br>
     <!-- TOO MUCH CODE? -->
     vs. <%= matchup.competitors.map(&:name).select{|c| c != @competitor.name}.first %><br>
     <%= matchup.deadline.strftime("%A, %B %d, '%y") %> at <%= matchup.deadline.strftime("%I:%M %p") %><br>
-  </a>
+  </a><br>
 <% end %>
 
 <h3>Users who have bet on <%= @competitor.name %></h3>
