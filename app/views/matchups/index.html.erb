@@ -1,3 +1,4 @@
+ <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 <h3 id="create_matchup"><%= link_to "Create a Matchup", new_matchup_path %></h3>
 
 <div class="matchups_container">
@@ -25,6 +26,11 @@
 
     </div>
 
+</div>
+
+<div>
+  <%= column_chart({"Pie Eating"=>2, "Rock, Paper, Scissors"=>5, "Wrestling of the Arms"=>3, "Issa Race"=>3} ,
+  {library: {hAxis: {title: "Number of Matches"}, vAxis: {title: "Type of Matches"}}}) %>
 </div>
 
 <!-- 1. Make the whole box clickable or just the link? -->

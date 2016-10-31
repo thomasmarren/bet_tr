@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027191945) do
+ActiveRecord::Schema.define(version: 20161031024034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20161027191945) do
     t.integer "user_id"
     t.integer "matchups_competitors_id"
     t.integer "amount"
+    t.string  "status"
   end
 
   create_table "competitors", force: :cascade do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161027191945) do
   create_table "matchups_competitors", force: :cascade do |t|
     t.integer "matchup_id"
     t.integer "competitor_id"
+    t.boolean "winner"
   end
 
   create_table "users", force: :cascade do |t|

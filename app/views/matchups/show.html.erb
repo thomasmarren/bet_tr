@@ -40,7 +40,8 @@
 </div>
 
 <script type="text/javascript">
-var deadline = "<%= @matchup.deadline.strftime("%B %d %Y %I:%M:%S %Z%z") %>";
+
+var deadline = "<%= @matchup.format_time %>";
 
 function getTimeRemaining(endtime){
   var t = Date.parse(endtime) - Date.parse(new Date());
@@ -63,10 +64,10 @@ function initializeClock(id, endtime){
   var clock = document.getElementById(id);
   var timeinterval = setInterval(function(){
     var t = getTimeRemaining(endtime);
-    clock.innerHTML =  t.days + " : " +
-                       t.hours + " : " +
-                       t.minutes + " : " +
-                       t.seconds;
+    clock.innerHTML =  t.days + " Days <br>&nbsp;<br>" +
+                       t.hours + " Hours <br>&nbsp;<br> " +
+                       t.minutes + " Minutes <br>&nbsp;<br> " +
+                       t.seconds + " Seconds";
     if(t.total<=0){
       clearInterval(timeinterval);
     }
