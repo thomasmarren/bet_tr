@@ -49,12 +49,12 @@ class Matchup < ActiveRecord::Base
   end
 
   def data_for_bets_pie
-    self.get_bets_by_competitor.each_with_object({}) do |obj, hash|
+    self.get_sum_bets_by_competitor.each_with_object({}) do |obj, hash|
       hash[Competitor.find(obj.competitor).name] = obj.total
     end
   end
 
-  def get_bets_by_competitor
+  def get_sum_bets_by_competitor
     Matchup.find_by_sql(
     <<-SQL
     SELECT SUM(amount) AS total, competitor_id AS competitor
@@ -66,6 +66,22 @@ class Matchup < ActiveRecord::Base
     SQL
     )
   end
+
+  def get_total_bets_by_competitor
+    Matchup.find_by_sql(
+    <<-SQL
+    SELECT COUNT(amount) AS total, competitor_id AS competitor
+    FROM matchups_competitors
+    JOIN bets ON matchups_competitors.id = bets.matchups_competitor_id
+    JOIN matchups
+    ON matchups.id = matchups_competitors.matchup_id
+    WHERE matchups.id = #{self.id} GROUP BY competitor_id;
+    SQL
+    ).each_with_object({}) do |obj, hash|
+      hash[Competitor.find(obj.competitor).name] = obj.total
+    end
+  end
+
 
 
   private

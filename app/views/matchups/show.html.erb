@@ -41,7 +41,7 @@
 </div>
 
 <div>
-<%= pie_chart(@matchup.data_for_bets_pie) %>
+<%= pie_chart(@matchup.data_for_bets_pie) %> <%= pie_chart(@matchup.get_total_bets_by_competitor) %> 
 </div>
 
 <script type="text/javascript">
