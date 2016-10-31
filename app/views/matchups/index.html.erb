@@ -5,7 +5,34 @@
 
     <div class="row row-centered">
 
-      <% @matchups.each do |matchup| %>
+      <h2>OPEN</h2>
+
+      <% @matchups_open.each do |matchup| %>
+
+        <a href="/matchups/<%= matchup.id %>">
+          <div class="col-xs-6 col-centered col-fixed matchup_blocks">
+            <h3> <%= matchup.name %></h3>
+          <h4>Competitors</h4>
+            <% matchup.competitors.each.with_index(1) do |comp, idx| %>
+              <%= comp.name %>
+              <%= "vs." unless idx == matchup.competitors.length %>
+            <% end %><br>
+          <h4>Type</h4>
+          <%= matchup.matchup_type.name %><br>
+          <h4>Matchup Date</h4>
+          <%= matchup.deadline.ctime %><br>
+        </div>
+      </a>
+
+      <% end %>
+
+    </div>
+
+    <div class="row row-centered">
+
+      <h2>CLOSED</h2>
+
+      <% @matchups_closed.each do |matchup| %>
 
         <a href="/matchups/<%= matchup.id %>">
           <div class="col-xs-6 col-centered col-fixed matchup_blocks">

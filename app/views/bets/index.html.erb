@@ -8,16 +8,15 @@
 
 
 <h2> <% if @user %>
-  <%= @user.name %>
+  <%= @user.username %>
 <% end %>
 </h2>
 <% @bets.each do |bet| %>
 <li> Bet ID#<%= bet.id %> -
-  <%= link_to "#{bet.user.name}", user_path(bet.user) %> -
+  <%= link_to "#{bet.user.username}", user_path(bet.user) %> -
   $<%= bet.amount %> -
   <%= link_to "#{bet.matchup.name}", matchup_path(bet.matchup) %> -
   <%= bet.competitor.name %> -
-  <%= bet.status %>
 </li>
 <% end %>
 <h4> <% if @user %>

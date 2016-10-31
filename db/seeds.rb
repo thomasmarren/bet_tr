@@ -11,13 +11,13 @@ MatchupType.create(name: "Issa Race")
 MatchupType.create(name: "Wrestling of the Arms")
 MatchupType.create(name: "Pie Eating")
 
-Matchup.create(name: "First MATCH", odds: 2, deadline: DateTime.new(2017, 1, 1), matchup_type_id: 1)
-Matchup.create(name: "CriminalFest", odds: 20, deadline: DateTime.new(2016, 12, 16), matchup_type_id: 2)
-Matchup.create(name: "Slamotopia", odds: 5, deadline: DateTime.new(2017, 11, 9), matchup_type_id: 3)
-Matchup.create(name: "Wallopolooza", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 4)
-Matchup.create(name: "Painacopia", odds: 1, deadline: DateTime.new(2016, 11, 16), matchup_type_id: 2)
-Matchup.create(name: "BloodBathers", odds: 15, deadline: DateTime.new(2017, 3, 19), matchup_type_id: 3)
-Matchup.create(name: "BigBangs", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 1)
+Matchup.create(name: "First MATCH", odds: 1, deadline: DateTime.new(2016, 11, 1), matchup_type_id: 1)
+Matchup.create(name: "CriminalFest", odds: 1, deadline: DateTime.new(2016, 11, 1), matchup_type_id: 3)
+# Matchup.create(name: "Slamotopia", odds: 5, deadline: DateTime.new(2017, 11, 9), matchup_type_id: 3)
+# Matchup.create(name: "Wallopolooza", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 4)
+# Matchup.create(name: "Painacopia", odds: 1, deadline: DateTime.new(2016, 11, 16), matchup_type_id: 2)
+# Matchup.create(name: "BloodBathers", odds: 15, deadline: DateTime.new(2017, 3, 19), matchup_type_id: 3)
+# Matchup.create(name: "BigBangs", odds: 10, deadline: DateTime.new(2018, 5, 9), matchup_type_id: 1)
 
 
 User.create(name: 'Mike',username: 'Huckabee',password: 'idiothead')
@@ -36,41 +36,45 @@ Competitor.create(name: "MISSDISTRESS")
 Competitor.create(name: "WALLOPINGWOMAN")
 Competitor.create(name: "MERCILESSMOTHER")
 
+MatchupsCompetitor.create(matchup_id:  1, competitor_id: 1)
+MatchupsCompetitor.create(matchup_id:  1, competitor_id: 2)
+MatchupsCompetitor.create(matchup_id:  2, competitor_id: 3)
+MatchupsCompetitor.create(matchup_id:  2, competitor_id: 4)
 
-10.times do |user|
-  User.create(name: Faker::Name.name, username: Faker::Internet.user_name, password: 'password')
-end
-
-20.times do |competitor|
-  Competitor.create(name: Faker::Superhero.name)
-end
-
-10.times do |mt|
-  MatchupType.create(name: "Battle of " + Faker::Hipster.word.pluralize.capitalize)
-end
-
-
-20.times do |matchup|
-  Matchup.create(name: Faker::Hipster.word.capitalize + "apalooza", deadline: Faker::Date.forward(5), matchup_type_id: rand(1..7))
-end
-
-def create_matchup_competitor(matchup_id)
-  competitor1_id = rand(1..20)
-  MatchupsCompetitor.create(matchup_id:  matchup_id, competitor_id: competitor1_id)
-  competitor2_id = rand(1..20)
-  until competitor2_id != competitor1_id
-    competitor2_id = rand(1..20)
-  end
-  MatchupsCompetitor.create(matchup_id:  matchup_id, competitor_id: competitor2_id)
-end
-
-m_id = 1
-
-20.times do
-  create_matchup_competitor(m_id)
-  m_id += 1
-end
-
-20.times do
-  Bet.create(user_id: rand(1..10), matchups_competitor_id: rand(1..20) , amount: rand(1..5))
-end
+# 10.times do |user|
+#   User.create(name: Faker::Name.name, username: Faker::Internet.user_name, password: 'password')
+# end
+#
+# 20.times do |competitor|
+#   Competitor.create(name: Faker::Superhero.name)
+# end
+#
+# 10.times do |mt|
+#   MatchupType.create(name: "Battle of " + Faker::Hipster.word.pluralize.capitalize)
+# end
+#
+#
+# 20.times do |matchup|
+#   Matchup.create(name: Faker::Hipster.word.capitalize + "apalooza", deadline: Faker::Date.forward(5), matchup_type_id: rand(1..7))
+# end
+#
+# def create_matchup_competitor(matchup_id)
+#   competitor1_id = rand(1..20)
+#   MatchupsCompetitor.create(matchup_id:  matchup_id, competitor_id: competitor1_id)
+#   competitor2_id = rand(1..20)
+#   until competitor2_id != competitor1_id
+#     competitor2_id = rand(1..20)
+#   end
+#   MatchupsCompetitor.create(matchup_id:  matchup_id, competitor_id: competitor2_id)
+# end
+#
+# m_id = 1
+#
+# 20.times do
+#   create_matchup_competitor(m_id)
+#   m_id += 1
+# end
+#
+# 20.times do
+#   Bet.create(user_id: rand(1..10), matchups_competitor_id: rand(1..20) , amount: rand(1..5))
+# end

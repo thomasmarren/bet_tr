@@ -6,7 +6,7 @@ class BetsController < ApplicationController
     #require admin access too
     @users = User.all
     @users_select_array = @users.each_with_object([]) do |user, array|
-      array << [user.name, user.id]
+      array << [user.username, user.id]
     end
     if params[:user_id]
       @user = User.find(params[:user_id])

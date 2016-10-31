@@ -4,6 +4,8 @@ class MatchupsController < ApplicationController
 
   def index
     @matchups = Matchup.all
+    @matchups_open = Matchup.where("deadline > ?", Time.now)
+    @matchups_closed = Matchup.where("deadline < ?", Time.now)
   end
 
   def new
@@ -26,8 +28,6 @@ class MatchupsController < ApplicationController
       @matchup.save
       redirect_to @matchup
     end
-
-
   end
 
   def show
