@@ -5,7 +5,7 @@ class MatchupsController < ApplicationController
   def index
     @matchups = Matchup.all
     @matchups.each do |matchup|
-      if matchup.closed?
+      if matchup.closeable?
         matchup.winner
       end
     end
@@ -27,7 +27,6 @@ class MatchupsController < ApplicationController
     if same_competitors?
       redirect_to new_matchup_path
     else
-       
       @matchup = Matchup.new(deadline: deadline, matchup_type_id: @matchup_type.id)
       @matchup.name = "#{@competitor1.name} VS #{@competitor2.name}"
       @matchup.competitors = [@competitor1, @competitor2]
@@ -38,7 +37,9 @@ class MatchupsController < ApplicationController
 
   def show
     @matchup = Matchup.find(params[:id])
-    @matchup.winner
+    if @matchup.closeable?
+      @matchup.winner
+    end
   end
 
   def destroy

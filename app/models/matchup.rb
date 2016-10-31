@@ -3,14 +3,18 @@ class Matchup < ActiveRecord::Base
   has_many :competitors, through: :matchups_competitors
   belongs_to :matchup_type
 
-  def closed?
-    self.deadline < Time.now && self.status == "closed"
+  def display_winner
+    MatchupsCompetitor.find_by(matchup_id: self.id, winner: true).competitor.name
+  end
+
+  def closeable?
+    self.deadline < Time.now && self.status == "open"
   end
 
   def winner
     competitors = self.competitors
     range = rand(1..100)
-    unless self.closed?
+    if self.closeable?
       if range > 0 && range < 50
         winner = competitors[0]
         loser = competitors[1]

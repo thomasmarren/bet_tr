@@ -7,7 +7,7 @@
   </div>
 <% else %>
   <h1>CLOSED</h1>
-  <h2>Winner: ?</h2>
+  <h2>Winner: <%= @matchup.display_winner %></h2>
 <% end %>
 <br>
 
@@ -56,7 +56,7 @@
   </div>
 
 <div>
-<%= pie_chart(@matchup.data_for_bets_pie) %> <%= pie_chart(@matchup.get_total_bets_by_competitor) %> 
+<%= pie_chart(@matchup.data_for_bets_pie) %> <%= pie_chart(@matchup.get_total_bets_by_competitor) %>
 </div>
 
 
