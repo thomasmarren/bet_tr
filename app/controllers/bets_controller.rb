@@ -1,6 +1,7 @@
 class BetsController < ApplicationController
 
   before_action :require_login
+  before_action :require_admin, except: [:new, :create, :show]
 
   def index
     #require admin access too

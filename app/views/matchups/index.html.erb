@@ -1,7 +1,8 @@
  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
-<h3 id="create_matchup"><%= link_to "Create a Matchup", new_matchup_path %></h3>
-<h3 id="create_matchup"><%= link_to "Set Random Winners", closeall_path, method: :post %></h3>
-
+<% if admin? %>
+  <h3 id="create_matchup"><%= link_to "Create a Matchup", new_matchup_path %></h3>
+  <h3 id="create_matchup"><%= link_to "Set Random Winners", closeall_path, method: :post %></h3>
+<% end %>
 
 <div class="matchups_container">
 

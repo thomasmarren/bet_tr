@@ -1,6 +1,7 @@
 class MatchupsController < ApplicationController
 
   before_action :require_login, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show]
 
   def index
     @matchups = Matchup.all
@@ -72,7 +73,6 @@ class MatchupsController < ApplicationController
         matchup.random_winner
       end
     end
-    redirect_to matchups_path
   end
 
   private
