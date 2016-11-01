@@ -14,8 +14,13 @@ MatchupType.create(name: "Cookoff")
 MatchupType.create(name: "Staring Contest")
 MatchupType.create(name: "Thumb War")
 
-User.create(name: "macdaddy", username: 'macdaddy', password: 'password')
-15.times do |user|
+User.create(name: "macdaddy", username: 'macdaddy', password: 'password', balance: 10000000)
+User.create(name: "rob", username: 'berto', password: 'password', balance: 10000000)
+User.create(name: "tom", username: 'tommy', password: 'password', balance: 10000000)
+User.create(name: "eoghan", username: 'eggim', password: 'password', balance: 10000000)
+User.create(name: "jake", username: 'zappy', password: 'password', balance: 10000000)
+
+11.times do |user|
   User.create(name: Faker::Name.name, username: Faker::Internet.user_name, password: 'password')
 end
 
