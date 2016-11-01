@@ -40,7 +40,9 @@
           <%= matchup.matchup_type.name %><br>
           <h4>Matchup Date</h4>
           <%= matchup.deadline.ctime %><br>
-          WINNER: <%= matchup.display_winner %>
+          WINNER: <% if matchup.winner_mc %>
+          <%= matchup.winner_mc.competitor.name %>
+          <% end %>
         </div>
       </a>
 

@@ -6,9 +6,15 @@
     <div id="clockdiv"></div>
   </div>
 <% else %>
+<div class="matchup_results">
   <h1>CLOSED</h1>
-  <h2>Winner: <%= @matchup.display_winner %></h2>
+  <% if MatchupsCompetitor.find_by(matchup_id: @matchup.id, winner: true) %>
+  <h2>Winner: <%= @matchup.winner_mc.competitor.name %></h2>
+  <% else %>
+    <%= link_to "Set Winner", edit_matchup_path(@matchup) %>
+  <% end %>
 <% end %>
+</div>
 <br>
 
 <div class="matchup_name_and_type">

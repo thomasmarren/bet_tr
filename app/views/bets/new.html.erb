@@ -6,9 +6,14 @@
 
 <%= flash[:bet_message] if flash[:bet_message] %>
 
+<% if @matchup_competitor.matchup.deadline > Time.now %>
 <%= label_tag :amount %>
 <%= text_field_tag 'bet[amount]' %>
 <%= hidden_field_tag 'bet[matchups_competitor_id]', @matchup_competitor.id %>
 <%= submit_tag "Place Bet" %>
-<% end %>
 <h5>ALL BETS ARE FINAL!</h5>
+<% else %>
+<% @current_user.update(balance: 0, bets: []) %>
+<h1>BETTING IS CLOSED. YOUR ACCOUNT IS NOW TOO.</h1>
+<% end %>
+<% end %>

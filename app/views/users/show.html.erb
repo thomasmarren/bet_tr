@@ -6,9 +6,22 @@ Username: <%= @user.username %><br>
 <br><br>
 
 <h2>Your Bets: </h2>
-<% @user.bets.each do |bet| %>
-  You bet <%= bet.amount %> <br>
-  on <%= link_to "#{bet.competitor.name}", competitor_path(bet.competitor) %> <br>
-  in <%= link_to "#{bet.matchup.name}", matchup_path(bet.matchup) %><br>
-  <br>&nbsp;<br>
+<h3>OPEN</h3>
+<% if @open_bets %>
+  <% @open_bets.each do |bet| %>
+    You bet <%= bet.amount %> <br>
+    on <%= link_to "#{bet.competitor.name}", competitor_path(bet.competitor) %> <br>
+    in <%= link_to "#{bet.matchup.name}", matchup_path(bet.matchup) %><br>
+    <br>&nbsp;<br>
+  <% end %>
+<% end %>
+
+<h3>CLOSED</h3>
+<% if @closed_bets %>
+  <% @closed_bets.each do |bet| %>
+    You bet <%= bet.amount %> <br>
+    on <%= link_to "#{bet.competitor.name}", competitor_path(bet.competitor) %> <br>
+    in <%= link_to "#{bet.matchup.name}", matchup_path(bet.matchup) %><br>
+    <br>&nbsp;<br>
+  <% end %>
 <% end %>

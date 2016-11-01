@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @open_bets = Bet.where(user_id: @user.id, status: "open")
+    @closed_bets = Bet.where(user_id: @user.id, status: "closed")
   end
 
   def edit
