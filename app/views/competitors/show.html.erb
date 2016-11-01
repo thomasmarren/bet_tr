@@ -26,6 +26,9 @@
 totaling $<%= user.bets.select{|bet| bet.matchups_competitor.competitor.id == @competitor.id}.map(&:amount).inject{|sum,bet| sum + bet} %><br>
 <% end %>
 
+<%= column_chart(@competitor.chart_data_for_bets_per_competitor ,
+{library: {hAxis: {title: "User"}, vAxis: {title: "Total Amount Bet"}}}) %>
+
 <h3>Types of matches participated</h3>
 
 <%= "None." if @competitor.matchup_types.empty? %>
