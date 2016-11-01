@@ -5,8 +5,8 @@ class MatchupsController < ApplicationController
 
   def index
     @matchups = Matchup.all
-    @matchups_open = Matchup.where("deadline > ?", Time.now)
-    @matchups_closed = Matchup.where("deadline < ?", Time.now)
+    @matchups_open = Matchup.where("deadline > ?", Time.now).order(:deadline)
+    @matchups_closed = Matchup.where("deadline < ?", Time.now).order(deadline: :desc)
   end
 
   def new
@@ -78,6 +78,7 @@ class MatchupsController < ApplicationController
         matchup.random_winner
       end
     end
+    redirect_to matchups_path
   end
 
   private
