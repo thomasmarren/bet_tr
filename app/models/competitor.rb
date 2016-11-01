@@ -38,4 +38,22 @@ class Competitor < ActiveRecord::Base
     MatchupType.find(matchup_type_ids)
   end
 
+  #
+  # #What to do next?
+  # def bets_per_competitor
+  #   Bet.find_by_sql(
+  #   <<-SQL
+  #   SELECT COUNT(bets) AS num_of_bets, SUM(bets.amount) AS amount, users.name AS user
+  #   FROM users
+  #   JOIN bets
+  #   ON users.id = bets.user_id
+  #   JOIN matchups_competitors
+  #   ON bets.matchups_competitor_id = matchups_competitors.id
+  #   JOIN competitors ON matchups_competitors.competitor_id = competitors.id
+  #   WHERE competitors.id = #{self.id}
+  #   GROUP BY users.name
+  #   SQL
+  #   )
+  # end
+
 end

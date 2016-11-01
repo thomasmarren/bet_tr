@@ -15,7 +15,7 @@ class RandomMatchupGenerator
   end
 
   def matchup_name
-    competitors.map(&:name).join(" vs ")
+    competitors.map(&:name).reverse.join(" vs ")
   end
 
   def randomize
