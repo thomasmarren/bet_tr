@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post "/placebet", to: "bets#new"
   post "/setwinner", to: "matchups#update"
   get "/leaderboards", to: "bets#show"
+  post "/closeall", to: "matchups#close_all"
 
 
 end

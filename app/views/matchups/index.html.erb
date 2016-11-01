@@ -1,5 +1,7 @@
  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 <h3 id="create_matchup"><%= link_to "Create a Matchup", new_matchup_path %></h3>
+<h3 id="create_matchup"><%= link_to "Set Random Winners", closeall_path, method: :post %></h3>
+
 
 <div class="matchups_container">
 
@@ -40,8 +42,9 @@
           <%= matchup.matchup_type.name %><br>
           <h4>Matchup Date</h4>
           <%= matchup.deadline.strftime("%B %d %Y %H:%M:%S") %><br>
-          <h4>Winner</h4>
-          <%= matchup.display_winner %>
+          <h4>Winner</h4><% if matchup.winner_mc %>
+          <%= matchup.winner_mc.competitor.name %>
+          <% end %>
         </div>
       </a>
 

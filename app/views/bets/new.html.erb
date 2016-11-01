@@ -13,7 +13,8 @@
 <%= submit_tag "Place Bet" %>
 <h5>ALL BETS ARE FINAL!</h5>
 <% else %>
-<% @current_user.update(balance: 0, bets: []) %>
+<% @current_user.update(balance: 0) %>
+<% @current_user.bets.last.update(amount: 0) %>
 <h1>BETTING IS CLOSED. YOUR ACCOUNT IS NOW TOO.</h1>
 <% end %>
 <% end %>

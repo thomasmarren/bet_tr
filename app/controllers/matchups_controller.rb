@@ -27,8 +27,7 @@ class MatchupsController < ApplicationController
     if same_competitors?
       redirect_to new_matchup_path
     else
-      @matchup = Matchup.new(deadline: deadline, matchup_type_id: @matchup_type.id)
-      @matchup.name = "#{@competitor2.name} VS #{@competitor1.name}"
+      @matchup = Matchup.new(name: name, deadline: deadline, matchup_type_id: @matchup_type.id)
       @matchup.competitors = [@competitor1, @competitor2]
       @matchup.save
       redirect_to @matchup
@@ -38,7 +37,7 @@ class MatchupsController < ApplicationController
   def show
     @matchup = Matchup.find(params[:id])
   end
-  
+
   def edit
     @matchup = Matchup.find(params[:id])
   end
@@ -65,6 +64,15 @@ class MatchupsController < ApplicationController
     @random_matchup = RandomMatchupGenerator.new.randomize
     @random_matchup.save
     redirect_to @random_matchup
+  end
+
+  def close_all
+    Matchup.all.each do |matchup|
+      if matchup.closeable?
+        matchup.random_winner
+      end
+    end
+    redirect_to matchups_path
   end
 
   private
