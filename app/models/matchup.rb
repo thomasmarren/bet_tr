@@ -3,15 +3,15 @@ class Matchup < ActiveRecord::Base
   has_many :competitors, through: :matchups_competitors
   belongs_to :matchup_type
 
-  def display_winner
-    MatchupsCompetitor.find_by(matchup_id: self.id, winner: true).competitor.name
+  def winner_mc
+    MatchupsCompetitor.find_by(matchup_id: self.id, winner: true)
   end
 
   def closeable?
     self.deadline < Time.now && self.status == "open"
   end
 
-  def winner
+  def random_winner
     competitors = self.competitors
     range = rand(1..100)
     if self.closeable?
@@ -29,6 +29,29 @@ class Matchup < ActiveRecord::Base
       won.save
       lost.save
       won.bets.each do |bet|
+        bet.resolve
+      end
+      lost.bets.each do |bet|
+        bet.resolve
+      end
+      self.update(status: "closed")
+    end
+  end
+
+  def set_winner(winner)
+    competitors = self.competitors
+    if self.closeable?
+      loser = competitors.reject {|comp| comp == winner}.first
+      won = MatchupsCompetitor.find_by(competitor_id: winner.id, matchup_id: self.id)
+      lost = MatchupsCompetitor.find_by(competitor_id: loser.id, matchup_id: self.id)
+      won.winner = true
+      lost.winner = false
+      won.save
+      lost.save
+      won.bets.each do |bet|
+        bet.resolve
+      end
+      lost.bets.each do |bet|
         bet.resolve
       end
       self.update(status: "closed")

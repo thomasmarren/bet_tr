@@ -27,10 +27,14 @@
     <nav>
 
       <div class="logo">
-        <a href="/matchups">
+        <a href="/">
           <h1>Bet.tr</h1>
           <h5>Clever tag line</h5>
         </a>
+      </div>
+
+      <div class="links">
+        <%= link_to "LEADERBOARDS", leaderboards_path %>
       </div>
 
       <% if logged_in? %>

@@ -21,7 +21,7 @@ RSpec.describe Bet, type: :model do
   let(:second_bet) {Bet.create(user_id: 1, matchups_competitor_id: 3, amount: 20)}
 
   it "is valid with a user_id and a matchups_competitor_id" do
-     
+
     expect(first_bet).to be_valid
     expect(second_bet).to be_valid
   end
@@ -32,15 +32,15 @@ RSpec.describe Bet, type: :model do
   #   expect
   # end
 
-  it "defaults status => 'Open'" do
-     
-    expect(first_bet.status).to eq("Open")
-    expect(first_bet.status).to eq("Open")
+  it "defaults status => 'open'" do
+
+    expect(first_bet.status).to eq("open")
+    expect(first_bet.status).to eq("open")
   end
 
   describe '#payout_amount' do
     it 'payout calculation based on odds' do
-       
+
       expect(first_bet.payout_amount).to eq(20)
       expect(second_bet.payout_amount).to eq(40)
     end

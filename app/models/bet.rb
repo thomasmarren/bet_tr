@@ -33,6 +33,7 @@ class Bet < ActiveRecord::Base
       user.balance += (payout_amount + amount)
       user.save
     end
+    self.update(status: "closed")
   end
 
 end

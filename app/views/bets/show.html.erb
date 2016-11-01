@@ -1,0 +1,12 @@
+<h1>LEADERBOARDS</h1>
+
+<%= column_chart(@chart2,
+{library: {hAxis: {title: "Username"}, vAxis: {title: "Number of Winning Bets"}}}) %>
+
+<% @bets.each_with_index do |bet, index| %>
+<h3><%= index + 1 %>.
+<%= bet.user.username %> -
+<%= bet.count %> Wins -
+<%= number_to_percentage((bet.count * 100 / bet.user.bets.count).to_f) %> Win Rate</h3>
+<br>
+<% end %>

@@ -1,0 +1,43 @@
+
+<div class="matchup_edit_header">
+  <h1>Who won? Pick the Winner</h2>
+</div>
+
+<div class="matchup_name_and_type">
+  <h2> <%= @matchup.name %> </h1>
+  <h3> <%= @matchup.matchup_type.name %> </h3>
+</div>
+
+<div class="competitor_buttons row-fluid">
+
+  <div class="span5">
+    <%= form_tag "/setwinner" do %>
+    <%= hidden_field_tag 'matchup', @matchup.id  %>
+    <%= hidden_field_tag 'competitor', @matchup.competitors.first.id  %>
+    <%= submit_tag "#{@matchup.competitors.first.name}" %>
+  <% end %>
+  </div>
+
+  <div class="span2">
+    <h1>vs.</h1>
+  </div>
+
+  <div class="span5">
+      <%= form_tag "/setwinner" do %>
+      <%= hidden_field_tag 'matchup', @matchup.id  %>
+      <%= hidden_field_tag 'competitor', @matchup.competitors.last.id  %>
+      <%= submit_tag "#{@matchup.competitors.last.name}" %>
+    <% end %>
+
+  </div>
+
+</div>
+
+
+<div class="random_buttons">
+  <%= form_tag "/setwinner" do %>
+  <%= hidden_field_tag 'random' %>
+  <%= hidden_field_tag 'matchup', @matchup.id  %>
+  <%= submit_tag "Random Winner" %>
+  <% end %>
+</div>

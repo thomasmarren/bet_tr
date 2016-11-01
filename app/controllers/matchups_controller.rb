@@ -4,11 +4,6 @@ class MatchupsController < ApplicationController
 
   def index
     @matchups = Matchup.all
-    @matchups.each do |matchup|
-      if matchup.closeable?
-        matchup.winner
-      end
-    end
     @matchups_open = Matchup.where("deadline > ?", Time.now)
     @matchups_closed = Matchup.where("deadline < ?", Time.now)
   end
@@ -32,7 +27,8 @@ class MatchupsController < ApplicationController
     if same_competitors?
       redirect_to new_matchup_path
     else
-      @matchup = Matchup.new(name: name, deadline: deadline, matchup_type_id: @matchup_type.id)
+      @matchup = Matchup.new(deadline: deadline, matchup_type_id: @matchup_type.id)
+      @matchup.name = "#{@competitor2.name} VS #{@competitor1.name}"
       @matchup.competitors = [@competitor1, @competitor2]
       @matchup.save
       redirect_to @matchup
@@ -41,8 +37,21 @@ class MatchupsController < ApplicationController
 
   def show
     @matchup = Matchup.find(params[:id])
-    if @matchup.closeable?
-      @matchup.winner
+  end
+  
+  def edit
+    @matchup = Matchup.find(params[:id])
+  end
+
+  def update
+    matchup = Matchup.find(params[:matchup])
+    if params[:random]
+      matchup.random_winner
+      redirect_to matchup
+    else
+    winner = Competitor.find(params[:competitor])
+    matchup.set_winner(winner)
+      redirect_to matchup
     end
   end
 
