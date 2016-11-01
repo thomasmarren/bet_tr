@@ -14,10 +14,11 @@ nav {
 
 .logo a {
   text-decoration: none;
+  color: red;
 }
 
 .links {
-  padding: 65px 500px 0px 0px;
+  padding: 100px 350px 0px 0px;
   text-align: center;
 }
 
