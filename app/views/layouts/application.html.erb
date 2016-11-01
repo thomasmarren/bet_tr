@@ -54,6 +54,9 @@
           </ul>
         </div>
           <h3><i class="fa fa-usd" aria-hidden="true"></i><%= current_user.balance %></h3>
+          <% if session[:admin] == true %>
+            <h3>ADMIN</h3>
+          <% end %>
 
       </div>
 
