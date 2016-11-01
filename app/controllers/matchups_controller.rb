@@ -18,9 +18,14 @@ class MatchupsController < ApplicationController
   def create
     @competitor1 = Competitor.find(competitor1)
     @competitor2 = Competitor.find(competitor2)
+    competitors = [@competitor1, @competitor2]
     @matchup_type = MatchupType.find(matchup_type)
     if matchup_name == ""
-      name = "#{@competitor1.name} VS #{@competitor2.name}"
+      if @competitor1.id > @competitor2.id
+        name = "#{@competitor2.name} VS #{@competitor1.name}"
+      else
+        name = "#{@competitor1.name} VS #{@competitor2.name}"
+      end
     else
       name = matchup_name.upcase
     end
@@ -29,7 +34,7 @@ class MatchupsController < ApplicationController
       redirect_to new_matchup_path
     else
       @matchup = Matchup.new(name: name, deadline: deadline, matchup_type_id: @matchup_type.id)
-      @matchup.competitors = [@competitor1, @competitor2]
+      @matchup.competitors = competitors.sort_by {|comp| comp.id}
       @matchup.save
       redirect_to @matchup
     end

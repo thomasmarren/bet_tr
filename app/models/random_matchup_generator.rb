@@ -15,7 +15,11 @@ class RandomMatchupGenerator
   end
 
   def matchup_name
-    competitors.map(&:name).join(" vs ")
+    if competitors.first.id > competitors.last.id
+      name = "#{competitors.last.name} VS #{competitors.first.name}"
+    else
+      name = "#{competitors.first.name} VS #{competitors.last.name}"
+    end
   end
 
   def randomize
