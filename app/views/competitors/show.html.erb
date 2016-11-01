@@ -21,7 +21,9 @@
 
 <%= "None. Be the first!" if @competitor.users.empty? %>
 <% @competitor.users.each do |user| %>
-<%= link_to user.name, user %><br>
+<%= link_to user.name, user %> -
+<%= user.bets.select{|bet| bet.matchups_competitor.competitor.id == @competitor.id}.count %> time(s) -
+totaling $<%= user.bets.select{|bet| bet.matchups_competitor.competitor.id == @competitor.id}.map(&:amount).inject{|sum,bet| sum + bet} %><br>
 <% end %>
 
 <h3>Types of matches participated</h3>
