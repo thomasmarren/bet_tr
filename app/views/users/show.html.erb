@@ -1,6 +1,8 @@
 <%= javascript_include_tag "https://www.google.com/jsapi" %>
 <h1><%= @user.username %></h1><br>
-<%= number_to_percentage(@user.winning_bets.first.won.to_f * 100 / @user.bets.count.to_f, precision: 2) %> Win Rate</h3>
+<% unless @user.winning_bets.empty? %>
+  <%= number_to_percentage(@user.winning_bets.first.won.to_f * 100 / @user.bets.count.to_f, precision: 2) %> Win Rate</h3>
+<% end %>
 
 <h2>Bets: </h2>
 <h3>OPEN</h3>
@@ -11,6 +13,7 @@
     on <%= bet.competitor.name %> <br>
     in <%= bet.matchup.name %><br>
   </a>
+  <br>
   <% end %>
 <% end %>
 

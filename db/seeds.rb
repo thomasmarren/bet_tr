@@ -12,6 +12,7 @@ MatchupType.create(name: "Wrestling of the Arms")
 MatchupType.create(name: "Pie Eating")
 MatchupType.create(name: "Cookoff")
 MatchupType.create(name: "Staring Contest")
+MatchupType.create(name: "Thumb War")
 
 User.create(name: "macdaddy", username: 'macdaddy', password: 'password')
 15.times do |user|
@@ -41,7 +42,7 @@ Competitor.create(name: "Amanda Steckler")
 Competitor.create(name: "Ben Henriquez")
 Competitor.create(name: "Chris Peleti")
 Competitor.create(name: "Craig Iturbe")
-Competitor.create(name: "Charlie Spenc")
+Competitor.create(name: "Charlie Spencer")
 Competitor.create(name: "Zack Adams")
 Competitor.create(name: "Eoghan Leddy")
 Competitor.create(name: "Marc Immediato")
@@ -54,15 +55,23 @@ Competitor.create(name: "Krissa Santos")
 Competitor.create(name: "Leigh Scherrer")
 Competitor.create(name: "Matt Peleti")
 Competitor.create(name: "Kevin Evans")
-Competitor.create(name: "Niky ")
+Competitor.create(name: "Niky Morgan")
 Competitor.create(name: "Niti Patel")
 Competitor.create(name: "Peregrin Garet")
-Competitor.create(name: "Salomé Braganza")
+Competitor.create(name: "SalomÉ Braganza")
 Competitor.create(name: "Sam Nagourney")
 
 
-18.times do |matchup|
-  Matchup.create(name: Faker::Hipster.word.capitalize + "apalooza", deadline: (DateTime.now + 10.minutes), matchup_type_id: rand(1..6))
+6.times do |matchup|
+  Matchup.create(name: Faker::Hipster.word.capitalize + "palooza", deadline: (DateTime.now + 3.minutes), matchup_type_id: rand(1..7))
+end
+
+6.times do |matchup|
+  Matchup.create(name: Faker::Hipster.word.capitalize + "palooza", deadline: (DateTime.now + 10.minutes), matchup_type_id: rand(1..7))
+end
+
+6.times do |matchup|
+  Matchup.create(name: Faker::Hipster.word.capitalize + "palooza", deadline: (DateTime.now + 3.hours), matchup_type_id: rand(1..7))
 end
 
 def create_matchup_competitor(matchup_id)

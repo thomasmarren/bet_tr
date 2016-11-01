@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
 
   def index
-    @users = User.all
+    @users = User.all.order(:username)
   end
 
   def new

@@ -11,9 +11,9 @@
   <% if MatchupsCompetitor.find_by(matchup_id: @matchup.id, winner: true) %>
   <h2>Winner: <%= @matchup.winner_mc.competitor.name %></h2>
   <% else %>
-    <%= link_to "Set Winner", edit_matchup_path(@matchup) %>
+    <%= link_to "Set Winner", edit_matchup_path(@matchup) if admin? %>
   <% end %>
-<% end %>
+  <% end %>
 </div>
 <br>
 

@@ -10,7 +10,7 @@ class MatchupsController < ApplicationController
   end
 
   def new
-    @competitors = Competitor.all
+    @competitors = Competitor.all.order(:name)
     @types = MatchupType.all
     @matchup = Matchup.new
   end
