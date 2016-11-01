@@ -8,6 +8,7 @@ class CompetitorsController < ApplicationController
     @chart2 = total_number_of_bets
     @chart3 = total_value_of_bets
     @chart4 = average_bet
+    @chart5 = total_wins_for_competitors
   end
 
   def new
@@ -77,6 +78,16 @@ private
     competitors.map do |competitor|
       [competitor.name, (competitor.bets.map(&:amount).inject {|sum,bet| sum + bet}) / (competitor.bets.count)]
     end
+  end
+
+  def total_wins_for_competitors
+    Competitor.find_by_sql(
+    <<-SQL
+    SELECT competitors.id AS id, competitors.name AS name, COUNT(matchups_competitors.id) AS count
+    FROM competitors JOIN matchups_competitors ON competitors.id = matchups_competitors.competitor_id
+    WHERE matchups_competitors.winner = true GROUP BY competitors.id ORDER BY count DESC;
+    SQL
+    ).map {|competitor| [competitor.name, competitor.count]}
   end
 
 end
