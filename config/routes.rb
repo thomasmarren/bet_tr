@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new", as: :login
   get "/signup", to: "users#new", as: :signup
   delete "/logout", to: "sessions#destroy"
+  get "/admin", to: "sessions#admin"
+  post "/admin", to: "sessions#make_admin"
 
   post "/random", to: "matchups#create_random_matchup"
 
@@ -20,6 +22,8 @@ Rails.application.routes.draw do
   post "/setwinner", to: "matchups#update"
   get "/leaderboards", to: "bets#show"
   post "/closeall", to: "matchups#close_all"
+
+
 
 
 end

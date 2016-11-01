@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+  ADMIN_PASSWORD = "nohackers"
 
   def new
   end
@@ -27,6 +28,18 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to login_path
+  end
+
+  def admin
+  end
+
+  def make_admin
+    if params[:password] == ADMIN_PASSWORD
+      session[:admin] = true
+      redirect_to matchups_path
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
 
