@@ -41,14 +41,14 @@
       <div class="nav_right">
 
         <div class="btn-group">
-          <a class="btn btn-primary" href="/users/<%= current_user.id %>"><i class="fa fa-user fa-fw"></i><%= current_user.username %></a>
+          <a class="btn btn-primary" href="/users/<%= current_user.id %>"><i style="color: white;" class="fa fa-user fa-fw"></i><%= current_user.username %></a>
           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
             <span class="fa fa-caret-down" title="Toggle dropdown menu"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
-            <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
-            <li class="divider"></li>
+            <!-- <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+            <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li> -->
+            <!-- <li class="divider"></li> -->
             <% if session[:admin] == true %>
               <li><a href="/admin"><i class="fa fa-lock"></i> Admin</a></li>
             <% else %>

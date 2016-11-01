@@ -1,27 +1,32 @@
 <%= javascript_include_tag "https://www.google.com/jsapi" %>
-Username: <%= @user.username %><br>
-<% if current_user == @user %>
-  Current Balance: <%= @user.balance %>
-<% end %>
-<br><br>
+<h1><%= @user.username %></h1><br>
+<%= number_to_percentage(@user.winning_bets.first.won.to_f * 100 / @user.bets.count.to_f, precision: 2) %> Win Rate</h3>
 
-<h2>Your Bets: </h2>
+<h2>Bets: </h2>
 <h3>OPEN</h3>
 <% if @open_bets %>
   <% @open_bets.each do |bet| %>
+  <a href="/matchups/<%= bet.matchup.id %>" class="user_win_loss">
     You bet <%= bet.amount %> <br>
-    on <%= link_to "#{bet.competitor.name}", competitor_path(bet.competitor) %> <br>
-    in <%= link_to "#{bet.matchup.name}", matchup_path(bet.matchup) %><br>
-    <br>&nbsp;<br>
+    on <%= bet.competitor.name %> <br>
+    in <%= bet.matchup.name %><br>
+  </a>
   <% end %>
 <% end %>
 
 <h3>CLOSED</h3>
 <% if @closed_bets %>
   <% @closed_bets.each do |bet| %>
+  <a href="/matchups/<%= bet.matchup.id %>" class="user_win_loss">
+  <% if bet.matchups_competitor.winner == true %>
+    <div class="winner">
+  <% else %>
+    <div class="loser">
+  <% end %>
     You bet <%= bet.amount %> <br>
-    on <%= link_to "#{bet.competitor.name}", competitor_path(bet.competitor) %> <br>
-    in <%= link_to "#{bet.matchup.name}", matchup_path(bet.matchup) %><br>
-    <br>&nbsp;<br>
+    on <%= bet.competitor.name %> <br>
+    in <%= bet.matchup.name %><br>
+  </div>
+  </a>
   <% end %>
 <% end %>

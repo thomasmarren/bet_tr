@@ -44,7 +44,7 @@
           <h4>Matchup Date</h4>
           <%= matchup.deadline.strftime("%B %d %Y %H:%M:%S") %><br>
           <h4>Winner</h4><% if matchup.winner_mc %>
-          <%= matchup.winner_mc.competitor.name %>
+          <p style="color: red;"><%= matchup.winner_mc.competitor.name %></p>
           <% end %>
         </div>
       </a>

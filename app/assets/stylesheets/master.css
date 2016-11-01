@@ -223,3 +223,35 @@ ul {
   padding: 50px;
   vertical-align: text-bottom;
 }
+
+/****************
+  USERS SHOW
+*****************/
+
+.winner {
+  margin-top: 5px;
+  color: black;
+  padding: 5px;
+  width: 18%;
+  background-color: #7abf66;
+}
+
+.loser {
+  margin-top: 5px;
+  color: black;
+  padding: 5px;
+  width: 18%;
+  background-color: #dd5951;
+}
+
+.winner:hover {
+  opacity: 0.5;
+}
+
+.loser:hover {
+  opacity: 0.5;
+}
+
+.user_win_loss:hover {
+  text-decoration: none;
+}
