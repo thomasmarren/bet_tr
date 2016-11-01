@@ -45,7 +45,11 @@
             <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
             <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
             <li class="divider"></li>
-            <li><a href="/admin"><i class="fa fa-unlock"></i>Admin Login</a></li>
+            <% if session[:admin] == true %>
+              <li><a href="/admin"><i class="fa fa-lock"></i> Admin</a></li>
+            <% else %>
+              <li><a href="/admin"><i class="fa fa-unlock"></i> Admin Login</a></li>
+            <% end %>
             <li><%= link_to "Log Out", logout_path, method: :delete %></li>
           </ul>
         </div>
