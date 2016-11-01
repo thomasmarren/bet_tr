@@ -3,7 +3,7 @@ class CompetitorsController < ApplicationController
   before_action :require_login
 
   def index
-    @competitors = Competitor.all
+    @competitors = Competitor.all.order(:name)
     @chart1 = num_of_matchups_per_competitor
     @chart2 = total_number_of_bets
     @chart3 = total_value_of_bets

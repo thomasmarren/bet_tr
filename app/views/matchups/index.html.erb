@@ -17,7 +17,7 @@
           <h4>Type</h4>
           <%= matchup.matchup_type.name %><br>
           <h4>Matchup Date</h4>
-          <%= matchup.deadline.ctime %><br>
+          <%= matchup.deadline.strftime("%B %d %Y %H:%M:%S") %><br>
         </div>
       </a>
 
@@ -39,8 +39,9 @@
           <h4>Type</h4>
           <%= matchup.matchup_type.name %><br>
           <h4>Matchup Date</h4>
-          <%= matchup.deadline.ctime %><br>
-          WINNER: <%= matchup.display_winner %>
+          <%= matchup.deadline.strftime("%B %d %Y %H:%M:%S") %><br>
+          <h4>Winner</h4>
+          <%= matchup.display_winner %>
         </div>
       </a>
 
