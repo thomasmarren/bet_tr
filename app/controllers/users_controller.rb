@@ -32,14 +32,14 @@ class UsersController < ApplicationController
     @closed_bets = Bet.where(user_id: @user.id, status: "closed")
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
+  # def edit
+  # end
+  #
+  # def update
+  # end
+  #
+  # def destroy
+  # end
 
 private
 
