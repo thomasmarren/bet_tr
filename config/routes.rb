@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :users, except: [:new]
   resources :sessions, except: [:new, :destroy]
   resources :competitors, except: [:edit, :update]
-  resources :matchups, except: [:index]
+  resources :matchups
+  resources :matchup_types
   resources :bets, except: [:new]
 
   get "/signup", to: "users#new", as: :signup

@@ -11,6 +11,10 @@ class Matchup < ActiveRecord::Base
     self.deadline < Time.now && self.status == "open"
   end
 
+  def opposing_competitor_to(competitor)
+    self.competitors.map(&:name).select{|c| c != competitor.name}.first
+  end
+
   def random_winner
     competitors = self.competitors
     range = rand(1..100)

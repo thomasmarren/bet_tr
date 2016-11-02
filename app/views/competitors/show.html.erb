@@ -6,35 +6,34 @@
 
 <h3>All Matchups</h3>
 
-<%= "None." if @competitor.matchups.empty? %>
+<%= "None." if @competitor.has_no_matchups? %>
 <% @competitor.matchups.each do |matchup| %>
   <a href="/matchups/<%= matchup.id %>">
     <h4><%= matchup.name %></h4>
     <%= matchup.matchup_type.name %><br>
-    <!-- TOO MUCH CODE? -->
-    vs. <%= matchup.competitors.map(&:name).select{|c| c != @competitor.name}.first %><br>
-    <%= matchup.deadline.strftime("%A, %B %d, '%y") %> at <%= matchup.deadline.strftime("%I:%M %p") %><br>
+    vs. <%= matchup.opposing_competitor_to(@competitor) %><br>
+    <%= DisplayDeadline.new(matchup).competitor_show_display %><br>
   </a><br>
 <% end %>
 
 <h3>Users who have bet on <%= @competitor.name %></h3>
 
-<%= "None. Be the first!" if @competitor.users.empty? %>
+<%= "None. Be the first!" if @competitor.has_no_users? %>
 <% @competitor.users.each do |user| %>
 <%= link_to user.name, user %> -
-<%= user.bets.select{|bet| bet.matchups_competitor.competitor.id == @competitor.id}.count %> time(s) -
-totaling $<%= user.bets.select{|bet| bet.matchups_competitor.competitor.id == @competitor.id}.map(&:amount).inject{|sum,bet| sum + bet} %><br>
+<%= UserCompetitorAnalytics.new(user, @competitor).number_of_bets_on_a_competitor %> time(s) -
+totaling $<%= UserCompetitorAnalytics.new(user, @competitor).total_bets_on_a_competitor %><br>
 <% end %>
 
-<%= column_chart(@competitor.chart_data_for_bets_per_competitor ,
+<%= column_chart(@bets_per_competitor ,
 {library: {hAxis: {title: "User"}, vAxis: {title: "Total Amount Bet"}}}) %>
 
 <h3>Types of matches participated</h3>
 
-<%= "None." if @competitor.matchup_types.empty? %>
+<%= "None." if @competitor.has_no_matchup_types? %>
 <% @competitor.matchup_types.each do |type| %>
 <%= link_to type.name, type %><br>
 <% end %>
 
 <h3>Total amount of bets placed</h3>
-<%= @competitor.total_bets_amount %>
+<%= @total_amount_of_bets_placed %>
