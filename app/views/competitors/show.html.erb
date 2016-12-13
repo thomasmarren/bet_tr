@@ -19,10 +19,11 @@
 <h3>Users who have bet on <%= @competitor.name %></h3>
 
 <%= "None. Be the first!" if @competitor.has_no_users? %>
+
 <% @competitor.users.each do |user| %>
-<%= link_to user.name, user %> -
-<%= UserCompetitorAnalytics.new(user, @competitor).number_of_bets_on_a_competitor %> time(s) -
-totaling $<%= UserCompetitorAnalytics.new(user, @competitor).total_bets_on_a_competitor %><br>
+  <%= link_to user.name, user %> -
+  <%= UserCompetitorAnalytics.new(user, @competitor).number_of_bets_on_a_competitor %> time(s) -
+  totaling $<%= UserCompetitorAnalytics.new(user, @competitor).total_bets_on_a_competitor %><br>
 <% end %>
 
 <%= column_chart(@bets_per_competitor ,
@@ -31,8 +32,9 @@ totaling $<%= UserCompetitorAnalytics.new(user, @competitor).total_bets_on_a_com
 <h3>Types of matches participated</h3>
 
 <%= "None." if @competitor.has_no_matchup_types? %>
+
 <% @competitor.matchup_types.each do |type| %>
-<%= link_to type.name, type %><br>
+  <%= link_to type.name, type %><br>
 <% end %>
 
 <h3>Total amount of bets placed</h3>

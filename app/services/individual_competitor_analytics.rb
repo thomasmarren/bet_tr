@@ -10,7 +10,6 @@ class IndividualCompetitorAnalytics
     competitor.bets.map(&:amount).inject(0){|sum,x| sum + x }
   end
 
-
   #What to do next?
   def bets_per_competitor
     Bet.find_by_sql(

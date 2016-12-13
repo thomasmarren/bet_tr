@@ -6,7 +6,6 @@ class DisplayDeadline
     @matchup = matchup
   end
 
-
   def competitor_show_display
     matchup.deadline.strftime("%A, %B %d, '%y") +
     " at " +

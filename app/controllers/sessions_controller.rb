@@ -2,9 +2,6 @@ class SessionsController < ApplicationController
 
   ADMIN_PASSWORD = "nohackers"
 
-  def new
-  end
-
   def create
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
@@ -13,25 +10,12 @@ class SessionsController < ApplicationController
     else
       render :new
     end
-
-  end
-
-  def show
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy
     session[:user_id] = nil
     session[:admin] = nil
     redirect_to login_path
-  end
-
-  def admin
   end
 
   def make_admin
@@ -42,6 +26,5 @@ class SessionsController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
 
 end
