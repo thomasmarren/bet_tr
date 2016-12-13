@@ -1,20 +1,23 @@
 <h1>Place your bet</h1>
 
 <%= form_tag bets_path do %>
-<h3>Matchup: <%= @matchup_competitor.matchup.name%></h3>
-<h3>Competitor: <%= @matchup_competitor.competitor.name%></h3>
+  <h3>Matchup: <%= @matchup_competitor.matchup.name%></h3>
+  <h3>Competitor: <%= @matchup_competitor.competitor.name%></h3>
 
-<%= flash[:bet_message] if flash[:bet_message] %>
+  <%= flash[:bet_message] if flash[:bet_message] %>
 
-<% if @matchup_competitor.matchup.deadline > Time.now %>
-<%= label_tag :amount %>
-<%= text_field_tag 'bet[amount]' %>
-<%= hidden_field_tag 'bet[matchups_competitor_id]', @matchup_competitor.id %>
-<%= submit_tag "Place Bet" %>
-<h5>ALL BETS ARE FINAL!</h5>
-<% else %>
-<% @current_user.update(balance: 0) %>
-<% @current_user.bets.last.update(amount: 0) %>
-<h1>BETTING IS CLOSED. YOUR ACCOUNT IS NOW TOO.</h1>
-<% end %>
+  <% if @matchup_competitor.matchup.deadline > Time.now %>
+    <%= label_tag :amount %>
+    <%= text_field_tag 'bet[amount]' %>
+    <%= hidden_field_tag 'bet[matchups_competitor_id]', @matchup_competitor.id %>
+    <%= submit_tag "Place Bet" %>
+    <h5>ALL BETS ARE FINAL!</h5>
+
+  <!-- Easter Egg -->
+  <% else %>
+    <% @current_user.update(balance: 0) %>
+    <% @current_user.bets.last.update(amount: 0) %>
+    <h1>BETTING IS CLOSED. YOUR ACCOUNT IS NOW TOO.</h1>
+  <% end %>
+  <!--  -->
 <% end %>

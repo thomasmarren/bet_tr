@@ -11,6 +11,10 @@ class Matchup < ActiveRecord::Base
     self.deadline < Time.now && self.status == "open"
   end
 
+  def opposing_competitor_to(competitor)
+    self.competitors.map(&:name).select{|c| c != competitor.name}.first
+  end
+
   def random_winner
     competitors = self.competitors
     range = rand(1..100)
@@ -24,6 +28,7 @@ class Matchup < ActiveRecord::Base
       end
       won = MatchupsCompetitor.find_by(competitor_id: winner.id, matchup_id: self.id)
       lost = MatchupsCompetitor.find_by(competitor_id: loser.id, matchup_id: self.id)
+      # sets the matchups_competitor's winner column to true or false based on result
       won.winner = true
       lost.winner = false
       won.save
@@ -41,6 +46,7 @@ class Matchup < ActiveRecord::Base
   def set_winner(winner)
     competitors = self.competitors
     if self.closeable?
+      # sets the opposite competitor winner column to false and sets the winner (the argument passed in) to true
       loser = competitors.reject {|comp| comp == winner}.first
       won = MatchupsCompetitor.find_by(competitor_id: winner.id, matchup_id: self.id)
       lost = MatchupsCompetitor.find_by(competitor_id: loser.id, matchup_id: self.id)
@@ -57,14 +63,6 @@ class Matchup < ActiveRecord::Base
       self.update(status: "closed")
     end
   end
-
-  #Analytics Categories
-  # Bets by competitor/ Total Amount Bet / Bets by User? / Total Number of Bets
-  # Maybe write methods for the analytics using heredoc SQL commands?
-  # Test that these methods return the proper data?
-  #> other_method_ideas.length
-  #> 0
-  # Matchup.find_by_sql
 
   def get_num_matchups_for_chart
     data = Matchup.group(:matchup_type_id).count
@@ -109,19 +107,6 @@ class Matchup < ActiveRecord::Base
     end
   end
 
-
-
   private
 
-
-
 end
-# Matchup.find_by_sql("select matchup_type_id from matchups group by matchups.matchup_type_id")
-
-# matchups.matchup_type_id AS matchups_matchup_type_id
-# SELECT SUM(amount), competitor_id FROM matchups_competitors JOIN bets
-# ON matchups_competitors.id = bets.matchups_competitors_id GROUP BY competitor_id;
-
-# SELECT SUM(amount), competitor_id FROM matchups_competitors JOIN bets
-# ON matchups_competitors.id = bets.matchups_competitors_id JOIN matchups
-# ON matchups.id = matchups_competitors.matchup_id WHERE matchups.id = 5 GROUP BY competitor_id;

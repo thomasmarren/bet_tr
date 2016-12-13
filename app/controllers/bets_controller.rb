@@ -14,13 +14,8 @@ class BetsController < ApplicationController
       @bets = @user.bets
     else
       @bets = Bet.all
-      @chart1 = total_bets_all_users
+      @chart1 = AllBetsAnalytics.new.total_bets_all_users
     end
-  end
-
-  def show
-    @bets = winning_bets_leaders
-    @chart2 = total_winning_bets_all_users
   end
 
   def new
@@ -45,6 +40,11 @@ class BetsController < ApplicationController
     end
   end
 
+  def show
+    @bets = AllBetsAnalytics.new.winning_bets_leaders
+    @chart2 = AllBetsAnalytics.new.total_winning_bets_all_users
+  end
+
   private
 
   def bet_params
@@ -61,22 +61,6 @@ class BetsController < ApplicationController
     else
       true
     end
-  end
-
-  def total_bets_all_users
-    bets = Bet.find_by_sql("SELECT user_id, count(*) as count FROM bets JOIN users ON bets.user_id = users.id GROUP BY bets.user_id")
-    bets.map {|bet| [bet.user.username, bet.count]}
-  end
-
-  def total_winning_bets_all_users
-    bets = Bet.find_by_sql("SELECT user_id, count(*) as count FROM bets JOIN matchups_competitors ON bets.matchups_competitor_id = matchups_competitors.id JOIN users ON bets.user_id = users.id WHERE matchups_competitors.winner = true GROUP BY bets.user_id ORDER BY count DESC")
-    bets.map {|bet| [bet.user.username, bet.count]}
-  end
-
-  def winning_bets_leaders
-    # should find a way to make these find by UNIQUE matchups to prevent spamming
-    # small bets to rack up "wins"
-    Bet.find_by_sql("SELECT user_id, count(*) as count FROM bets JOIN matchups_competitors ON bets.matchups_competitor_id = matchups_competitors.id JOIN users ON bets.user_id = users.id WHERE matchups_competitors.winner = true GROUP BY bets.user_id ORDER BY count DESC")
   end
 
 end

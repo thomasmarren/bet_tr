@@ -1,7 +1,7 @@
 <%= javascript_include_tag "https://www.google.com/jsapi" %>
 <h1><%= @user.username %></h1><br>
-<% unless @user.winning_bets.empty? %>
-  <%= number_to_percentage(@user.winning_bets.first.won.to_f * 100 / @user.bets.where("status = 'closed'").count.to_f, precision: 2) %> Win Rate</h3>
+<% unless UserAnalytics.new(@user).winning_bets.empty? %>
+  <%= UserAnalytics.new(@user).win_rate %> Win Rate</h3>
 <% end %>
 
 <h2>Bets: </h2>

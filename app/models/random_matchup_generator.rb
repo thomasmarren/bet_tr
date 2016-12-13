@@ -11,7 +11,7 @@ class RandomMatchupGenerator
 
   def deadline
     #chooses a random deadline between tomorrow and 5 days
-    DateTime.now + 1.minute
+    DateTime.now + 5.days
   end
 
   def matchup_name
