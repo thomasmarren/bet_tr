@@ -8,10 +8,11 @@
 *****************/
 nav {
   background-color: #e9e9e9;
-  height: 130px;
+  height: 95px;
 }
 
 .logo {
+  margin-left: 40px;
   font-family: Georgia;
   float: left;
 }
@@ -22,12 +23,13 @@ nav {
 }
 
 .links {
-  padding: 100px 350px 0px 0px;
+  padding: 65px 350px 0px 0px;
   text-align: center;
 }
 
 .links a {
-  margin: 0px 20px;
+  font-size: 1.2em;
+  margin: 0px 25px;
   color: black;
 }
 
